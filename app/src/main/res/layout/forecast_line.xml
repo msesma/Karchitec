@@ -6,7 +6,7 @@
     android:id="@+id/forecast_row"
     android:layout_width="match_parent"
     android:layout_height="40dp"
-    tools:context="com.paradigmadigital.karchitect.ui.master.MainActivity"
+    tools:context="com.paradigmadigital.karchitect.ui.main.MainActivity"
     android:orientation="horizontal"
     >
 

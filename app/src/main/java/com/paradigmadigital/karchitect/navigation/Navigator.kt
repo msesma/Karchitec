@@ -1,9 +1,6 @@
 package com.paradigmadigital.karchitect.navigation
 
-import android.content.Intent
 import android.support.v7.app.AppCompatActivity
-import com.paradigmadigital.karchitect.R
-import com.paradigmadigital.karchitect.ui.detail.DetailActivity
 import javax.inject.Inject
 
 
@@ -12,9 +9,38 @@ class Navigator
 constructor(
         val activity: AppCompatActivity
 ) {
-    fun navigateToDetail(forecastItem: ForecastItem) {
-        val intent = Intent(activity, DetailActivity::class.java)
-        intent.putExtra(activity.getString(R.string.item_key), forecastItem)
-        activity.startActivity(intent)
-    }
+
+
+//    private val containerId: Int
+//    private val fragmentManager: FragmentManager
+//    @Inject
+//    fun NavigationController(mainActivity: MainActivity): ??? {
+//        this.containerId = R.id.container
+//        this.fragmentManager = mainActivity.getSupportFragmentManager()
+//    }
+//
+//    fun navigateToSearch() {
+//        val searchFragment = SearchFragment()
+//        fragmentManager.beginTransaction()
+//                .replace(containerId, searchFragment)
+//                .commitAllowingStateLoss()
+//    }
+//
+//    fun navigateToRepo(owner: String, name: String) {
+//        val fragment = RepoFragment.create(owner, name)
+//        val tag = "repo/$owner/$name"
+//        fragmentManager.beginTransaction()
+//                .replace(containerId, fragment, tag)
+//                .addToBackStack(null)
+//                .commitAllowingStateLoss()
+//    }
+//
+//    fun navigateToUser(login: String) {
+//        val tag = "user" + "/" + login
+//        val userFragment = UserFragment.create(login)
+//        fragmentManager.beginTransaction()
+//                .replace(containerId, userFragment, tag)
+//                .addToBackStack(null)
+//                .commitAllowingStateLoss()
+//    }
 }

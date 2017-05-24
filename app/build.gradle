@@ -75,7 +75,7 @@ dependencies {
     compile "com.android.support:design:$support"
     compile "com.android.support:support-annotations:$support"
     compile "com.android.support.constraint:constraint-layout:$constraint"
- 
+
     compile "android.arch.persistence.room:runtime:$arch"
     compile "android.arch.lifecycle:runtime:$arch"
     compile "android.arch.lifecycle:extensions:$arch"

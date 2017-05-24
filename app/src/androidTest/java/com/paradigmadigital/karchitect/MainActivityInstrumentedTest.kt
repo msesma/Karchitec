@@ -11,7 +11,7 @@ import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import android.support.v7.widget.RecyclerView
 import com.paradigmadigital.karchitect.ui.detail.DetailActivity
-import com.paradigmadigital.karchitect.ui.master.MainActivity
+import com.paradigmadigital.karchitect.ui.main.MainActivity
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test

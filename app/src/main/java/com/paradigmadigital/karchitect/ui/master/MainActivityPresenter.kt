@@ -1,9 +1,6 @@
 package com.paradigmadigital.karchitect.ui.master
 
 import android.util.Log
-import com.paradigmadigital.karchitect.domain.Astronomy
-import com.paradigmadigital.karchitect.domain.CurrentWeather
-import com.paradigmadigital.karchitect.domain.ForecastItem
 import javax.inject.Inject
 
 class MainActivityPresenter

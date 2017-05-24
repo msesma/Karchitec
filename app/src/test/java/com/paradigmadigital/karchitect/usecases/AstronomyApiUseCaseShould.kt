@@ -1,9 +1,7 @@
 package com.paradigmadigital.karchitect.usecases
 
 import com.paradigmadigital.karchitect.MockWebServerTestBase
-import com.paradigmadigital.karchitect.domain.Astronomy
 import com.paradigmadigital.karchitect.domain.mappers.AstronomyMapper
-import com.paradigmadigital.karchitect.usecases.AstronomyApiUseCase
 import io.reactivex.observers.TestObserver
 import org.junit.Before
 import org.junit.Test

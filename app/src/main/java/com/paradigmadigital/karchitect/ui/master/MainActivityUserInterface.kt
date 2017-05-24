@@ -1,9 +1,5 @@
 package com.paradigmadigital.karchitect.ui.master
 
-import com.paradigmadigital.karchitect.domain.Astronomy
-import com.paradigmadigital.karchitect.domain.CurrentWeather
-import com.paradigmadigital.karchitect.domain.ForecastItem
-
 interface MainActivityUserInterface {
 
     fun initialize(delegate: Delegate)

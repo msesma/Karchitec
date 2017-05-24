@@ -5,10 +5,6 @@ import android.content.Context
 import android.util.Log
 import com.firebase.jobdispatcher.JobParameters
 import com.firebase.jobdispatcher.JobService
-import com.paradigmadigital.karchitect.domain.Astronomy
-import com.paradigmadigital.karchitect.domain.City
-import com.paradigmadigital.karchitect.domain.CurrentWeather
-import com.paradigmadigital.karchitect.domain.ForecastItem
 import com.paradigmadigital.karchitect.domain.cache.CacheProvider
 import com.paradigmadigital.karchitect.log.DiskLogger
 import com.paradigmadigital.karchitect.usecases.AstronomyApiUseCase

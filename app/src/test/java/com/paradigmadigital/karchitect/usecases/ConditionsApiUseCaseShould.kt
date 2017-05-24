@@ -1,7 +1,6 @@
 package com.paradigmadigital.karchitect.usecases
 
 import com.paradigmadigital.karchitect.MockWebServerTestBase
-import com.paradigmadigital.karchitect.domain.CurrentWeather
 import com.paradigmadigital.karchitect.domain.mappers.CurrentWeatherMapper
 import io.reactivex.observers.TestObserver
 import org.junit.Before

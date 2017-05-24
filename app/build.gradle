@@ -43,18 +43,11 @@ tasks.matching { it instanceof Test }.all {
 }
 
 ext {
-    rx_java = '2.0.'
-    rx_android = '2.0.1'
-    rx_kotlin = '1.0.0-RC2'
-    rx_relay = '2.0.0'
-
-    playservices = '10.2.6'
     support = '25.3.1'
     constraint = '1.0.2'
+    arch = '1.0.0-alpha1'
 
-    easy_permissions = '0.3.0'
     retrofit = '2.1.0'
-    adapter_rxjava = '2.2.0'
     converter_gson = '2.0.0'
     okhttp = '3.6.0'
     butterknife = '8.5.1'
@@ -79,20 +72,15 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 
-    compile "io.reactivex.rxjava2:rxjava:$rx_java"
-    compile "io.reactivex.rxjava2:rxandroid:$rx_android"
-    compile "com.jakewharton.rxrelay2:rxrelay:$rx_relay"
-
     compile "com.android.support:design:$support"
     compile "com.android.support:support-annotations:$support"
     compile "com.android.support.constraint:constraint-layout:$constraint"
-    compile "com.google.android.gms:play-services-base:$playservices"
-    compile "com.google.android.gms:play-services-location:$playservices"
-    compile "com.google.android.gms:play-services-wearable:$playservices"
-
-    compile 'com.firebase:firebase-jobdispatcher:0.5.2'
-
-    compile "pub.devrel:easypermissions:$easy_permissions"
+ 
+    compile "android.arch.persistence.room:runtime:$arch"
+    compile "android.arch.lifecycle:runtime:$arch"
+    compile "android.arch.lifecycle:extensions:$arch"
+    kapt "android.arch.persistence.room:compiler:$arch"
+    kapt "android.arch.lifecycle:compiler:$arch"
 
     kapt "com.jakewharton:butterknife-compiler:$butterknife"
     compile "com.jakewharton:butterknife:$butterknife"
@@ -102,7 +90,6 @@ dependencies {
     compile "com.squareup.okhttp3:okhttp:$okhttp"
     compile "com.squareup.okhttp3:logging-interceptor:$okhttp"
     compile "com.squareup.retrofit2:retrofit:$retrofit"
-    compile "com.squareup.retrofit2:adapter-rxjava2:$adapter_rxjava"
     compile "com.squareup.retrofit2:converter-gson:$converter_gson"
     compile "com.squareup.picasso:picasso:$picasso"
     compile "com.jakewharton.timber:timber:$timber"

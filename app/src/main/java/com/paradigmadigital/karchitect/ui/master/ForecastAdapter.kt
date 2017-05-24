@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.paradigmadigital.karchitect.R
 import com.paradigmadigital.karchitect.api.ImageRepository
-import com.paradigmadigital.karchitect.domain.ForecastItem
 import javax.inject.Inject
 
 class ForecastAdapter

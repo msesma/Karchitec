@@ -1,6 +1,5 @@
 package com.paradigmadigital.karchitect.usecases
 
-import com.paradigmadigital.karchitect.domain.City
 import com.paradigmadigital.karchitect.domain.mappers.CityMapper
 import com.paradigmadigital.karchitect.location.RxLocationProvider
 import io.reactivex.Observable

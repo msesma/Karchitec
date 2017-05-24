@@ -10,9 +10,6 @@ import android.text.format.Time
 import android.view.ViewTreeObserver
 import android.widget.ImageView
 import com.paradigmadigital.karchitect.R
-import com.paradigmadigital.karchitect.domain.Astronomy
-import com.paradigmadigital.karchitect.domain.CurrentWeather
-import com.paradigmadigital.karchitect.domain.ForecastItem
 import java.text.SimpleDateFormat
 import javax.inject.Inject
 

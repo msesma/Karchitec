@@ -18,9 +18,6 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import com.paradigmadigital.karchitect.R
 import com.paradigmadigital.karchitect.api.ImageRepository
-import com.paradigmadigital.karchitect.domain.Astronomy
-import com.paradigmadigital.karchitect.domain.CurrentWeather
-import com.paradigmadigital.karchitect.domain.ForecastItem
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.Target
 import java.text.SimpleDateFormat

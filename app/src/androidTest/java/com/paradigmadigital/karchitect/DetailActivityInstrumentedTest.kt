@@ -9,7 +9,6 @@ import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import android.support.v7.widget.Toolbar
-import com.paradigmadigital.karchitect.domain.ForecastItem
 import com.paradigmadigital.karchitect.ui.detail.DetailActivity
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.`is`

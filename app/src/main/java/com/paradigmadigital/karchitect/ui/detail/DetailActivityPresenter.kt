@@ -1,6 +1,5 @@
 package com.paradigmadigital.karchitect.ui.detail
 
-import com.paradigmadigital.karchitect.domain.ForecastItem
 import com.paradigmadigital.karchitect.ui.master.MainActivityPresenter
 import javax.inject.Inject
 

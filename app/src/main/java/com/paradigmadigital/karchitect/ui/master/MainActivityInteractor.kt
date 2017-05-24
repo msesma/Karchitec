@@ -1,14 +1,9 @@
 package com.paradigmadigital.karchitect.ui.master
 
 import android.util.Log
-import com.paradigmadigital.karchitect.domain.Astronomy
-import com.paradigmadigital.karchitect.domain.City
-import com.paradigmadigital.karchitect.domain.CurrentWeather
-import com.paradigmadigital.karchitect.domain.ForecastItem
 import com.paradigmadigital.karchitect.domain.cache.CacheProvider
 import com.paradigmadigital.karchitect.navigation.Navigator
 import com.paradigmadigital.karchitect.platform.PermissionManager
-import com.paradigmadigital.karchitect.scheduler.ForecastRetriever
 import com.paradigmadigital.karchitect.scheduler.Scheduler
 import com.paradigmadigital.karchitect.usecases.AstronomyApiUseCase
 import com.paradigmadigital.karchitect.usecases.CityUseCase

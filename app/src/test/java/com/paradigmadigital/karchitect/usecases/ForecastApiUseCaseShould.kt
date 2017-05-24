@@ -1,13 +1,10 @@
 package com.paradigmadigital.karchitect.usecases
 
 import com.paradigmadigital.karchitect.MockWebServerTestBase
-import com.paradigmadigital.karchitect.domain.ForecastItem
 import com.paradigmadigital.karchitect.domain.mappers.ForecastMapper
-import com.paradigmadigital.karchitect.usecases.ForecastApiUseCase
 import io.reactivex.observers.TestObserver
 import org.junit.Before
 import org.junit.Test
-import org.mockito.MockitoAnnotations
 import retrofit2.HttpException
 import java.util.*
 

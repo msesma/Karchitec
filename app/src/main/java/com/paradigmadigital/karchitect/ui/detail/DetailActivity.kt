@@ -2,7 +2,6 @@ package com.paradigmadigital.karchitect.ui.detail
 
 import android.os.Bundle
 import com.paradigmadigital.karchitect.R
-import com.paradigmadigital.karchitect.domain.ForecastItem
 import com.paradigmadigital.karchitect.platform.BaseActivity
 import javax.inject.Inject
 

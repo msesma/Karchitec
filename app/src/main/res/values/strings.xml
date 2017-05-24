@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Karchitec</string>
+    <string name="refresh">Refresh</string>
+    <string name="location_permission_request">This app needs access to location services</string>
+    <string name="connection_error">Connection error</string>
+    <string name="number">%.1f</string>
+    <string name="temp">%.1f ºC</string>
+    <string name="feels_like">Feels like %.1f ºC</string>
+    <string name="rain">Rain probability: %1$.1f%%, %2$.1fmm</string>
+    <string name="humidity">Air humidity: %.1f%%</string>
+    <string name="snow">Snow: %.1fmm</string>
+    <string name="wind">Wind: %.1f Km/h</string>
+    <string name="daylight">Daylight from %1$s to %2$s</string>
+    <string name="item_key">item_key</string>
+</resources>

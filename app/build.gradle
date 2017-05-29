@@ -35,10 +35,6 @@ android {
     }
 }
 
-//kapt {
-//    generateStubs = true
-//}
-
 tasks.matching { it instanceof Test }.all {
     testLogging.events = ["failed", "passed", "skipped"]
 }
@@ -95,7 +91,7 @@ dependencies {
     compile "com.squareup.picasso:picasso:$picasso"
     compile "com.jakewharton.timber:timber:$timber"
 
-    testCompile "junit:junit:$junit"
+/*    testCompile "junit:junit:$junit"
     testCompile "org.robolectric:robolectric:$robolectric"
     testCompile("com.squareup.assertj:assertj-android:$assertj") {
         exclude module: 'support-annotations'
@@ -119,5 +115,5 @@ dependencies {
         exclude module: 'recyclerview-v7'
         exclude module: 'support-annotations'
         exclude module: 'design'
-    }
+    }*/
 }

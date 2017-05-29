@@ -8,7 +8,7 @@ import com.paradigmadigital.karchitect.domain.db.GithubTypeConverters
         primaryKeys = arrayOf("query"))
 @TypeConverters(GithubTypeConverters::class)
 data class RepoSearchResult(
-        val query: String,
-        val repoIds: List<Int>,
-        val totalCount: Int,
-        val next: Int?)
+        var query: String,
+        var repoIds: List<Int>,
+        var totalCount: Int,
+        var next: Int)

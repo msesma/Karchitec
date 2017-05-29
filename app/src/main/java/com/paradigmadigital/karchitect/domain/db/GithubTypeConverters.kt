@@ -3,7 +3,7 @@ package com.paradigmadigital.karchitect.domain.db
 import android.arch.persistence.room.TypeConverter
 import android.arch.persistence.room.util.StringUtil
 
-object GithubTypeConverters {
+class GithubTypeConverters {
     @TypeConverter
     fun stringToIntList(data: String?): List<Int> {
         if (data == null) {

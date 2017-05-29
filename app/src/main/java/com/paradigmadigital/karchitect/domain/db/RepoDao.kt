@@ -27,23 +27,23 @@ abstract class RepoDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     abstract fun createRepoIfNotExists(domRepo: DomRepo): Long
 
-    @Query("SELECT * FROM DomRepo WHERE owner_login = :login AND name = :name")
+    @Query("SELECT * FROM DomRepo WHERE owner_login = :p0 AND name = :p1")
     abstract fun load(login: String, name: String): LiveData<DomRepo>
 
-    @Query("SELECT login, avatarUrl, contributions FROM contributor "
-            + "WHERE repoName = :name AND repoOwner = :owner "
+    @Query("SELECT login, avatarUrl, contributions FROM DomContributor "
+            + "WHERE repoName = :p1 AND repoOwner = :p0 "
             + "ORDER BY contributions DESC")
     abstract fun loadContributors(owner: String, name: String): LiveData<List<DomContributor>>
 
     @Query("SELECT * FROM DomRepo "
-            + "WHERE owner_login = :owner "
+            + "WHERE owner_login = :p0 "
             + "ORDER BY stars DESC")
     abstract fun loadRepositories(owner: String): LiveData<List<DomRepo>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insert(result: RepoSearchResult)
 
-    @Query("SELECT * FROM RepoSearchResult WHERE query = :query")
+    @Query("SELECT * FROM RepoSearchResult WHERE query = :p0")
     abstract fun search(query: String): LiveData<RepoSearchResult>
 
     fun loadOrdered(repoIds: List<Int>): LiveData<List<DomRepo>> {
@@ -62,9 +62,9 @@ abstract class RepoDao {
         }
     }
 
-    @Query("SELECT * FROM DomRepo WHERE id in (:repoIds)")
+    @Query("SELECT * FROM DomRepo WHERE id in (:p0)")
     protected abstract fun loadById(repoIds: List<Int>): LiveData<List<DomRepo>>
 
-    @Query("SELECT * FROM RepoSearchResult WHERE query = :query")
+    @Query("SELECT * FROM RepoSearchResult WHERE query = :p0")
     abstract fun findSearchResult(query: String): RepoSearchResult
 }

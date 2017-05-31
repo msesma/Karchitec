@@ -2,7 +2,10 @@ package com.paradigmadigital.karchitect.ui.main
 
 import android.arch.lifecycle.LifecycleRegistry
 import android.arch.lifecycle.LifecycleRegistryOwner
+import android.arch.lifecycle.ViewModelProviders
 import com.paradigmadigital.karchitect.platform.BaseActivity
+
+
 
 
 class MainActivity : BaseActivity(), LifecycleRegistryOwner {
@@ -14,13 +17,17 @@ class MainActivity : BaseActivity(), LifecycleRegistryOwner {
     @javax.inject.Inject
     lateinit var presenter: MainActivityPresenter
 
+    lateinit var viewModel: ChannelsViewModel;
+
     override fun onCreate(bundle: android.os.Bundle?) {
         super.onCreate(bundle)
         setContentView(com.paradigmadigital.karchitect.R.layout.activity_main)
         activityComponent.inject(this)
 
+        viewModel = ViewModelProviders.of(this).get(ChannelsViewModel::class.java)
+
         decorator.bind(getRootView())
-        presenter.initialize(decorator)
+        presenter.initialize(decorator, viewModel)
     }
 
 

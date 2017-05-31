@@ -1,7 +1,6 @@
 package com.paradigmadigital.karchitect.domain
 
 import android.arch.lifecycle.LiveData
-import com.paradigmadigital.karchitect.api.model.Feed
 import com.paradigmadigital.karchitect.api.services.FeedService
 import com.paradigmadigital.karchitect.domain.db.ChannelsDao
 import com.paradigmadigital.karchitect.domain.db.ItemsDao
@@ -44,7 +43,7 @@ constructor(
 
             try {
                 val response = feedService.getFeed().execute()
-                val feed = response.body() as Feed
+                val feed = response.body()
                 val channel = channelMapper.map(feed)
                 val items = itemsMapper.map(feed)
 

@@ -14,6 +14,7 @@ constructor(
 ) : AndroidViewModel(app) {
 
     @Inject lateinit var repository: FeedRepository
+
     val channels: LiveData<List<Channel>>
 
     init {

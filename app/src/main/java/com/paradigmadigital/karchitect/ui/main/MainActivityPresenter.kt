@@ -38,8 +38,7 @@ constructor(
 
     private fun initApp(viewModel: ChannelsViewModel) {
         if (viewModel.channels.value.isNullOrEmpty()) {
-            repository.getItems("https://www.paradigmadigital.com/category/dev/")
-            repository.getItems("https://www.paradigmadigital.com/category/techbiz/")
+            repository.getItems("http://www.paradigmatecnologico.com/feed/")
         }
     }
 

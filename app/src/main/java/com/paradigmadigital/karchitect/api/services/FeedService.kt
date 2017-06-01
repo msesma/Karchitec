@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 
 interface FeedService {
-    @GET("")
+    @GET("/feed/")
     fun getFeed(): Call<Feed>
 }

@@ -5,7 +5,7 @@ import org.simpleframework.xml.Root
 
 
 @Root(name = "rss", strict = false)
-class Feed {
-    @Element(name = "channel")
+class Feed (
+    @field:Element(name = "channel")
     var channel: FeedChannel? = null
-}
+)

@@ -8,8 +8,8 @@ class ChannelMapper
 @Inject
 constructor() : Mapper<Channel, Feed> {
     override fun map(input: Feed): Channel {
-        return Channel(input.channel?.link ?: "",
-                input.channel?.title ?: "",
-                input.channel?.description ?: "")
+        val title = input.channel?.title ?: ""
+        val desc = input.channel?.description ?: ""
+        return Channel(title + desc, title, desc, input.channel?.feedItems?.size ?: 0)
     }
 }

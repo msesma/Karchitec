@@ -19,6 +19,6 @@ abstract class  ItemsDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     abstract fun insert(item: Item)
 
-    @Query("SELECT * FROM items where channelLink = :p0")
-    abstract fun getAll(channelLink: String): LiveData<List<Item>>
+    @Query("SELECT * FROM items where channelKey = :p0")
+    abstract fun getAll(channelKey: String): LiveData<List<Item>>
 }

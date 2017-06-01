@@ -9,8 +9,6 @@ import org.simpleframework.xml.Root
 class FeedChannel(
         @field:Element(name = "title")
         var title: String? = null,
-        @field:Element(name = "link")
-        var link: String? = null,
         @field:Element(name = "description")
         var description: String? = null,
         @field:ElementList(inline = true, name = "item")

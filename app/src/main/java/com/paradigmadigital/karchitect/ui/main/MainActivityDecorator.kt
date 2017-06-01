@@ -1,8 +1,8 @@
 package com.paradigmadigital.karchitect.ui.main
 
+import android.arch.lifecycle.Observer
 import android.support.design.widget.FloatingActionButton
 import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -12,13 +12,14 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import com.paradigmadigital.karchitect.R
 import com.paradigmadigital.karchitect.domain.entities.Channel
+import com.paradigmadigital.karchitect.platform.BaseActivity
 import com.paradigmadigital.paraguas.ui.master.ChannelsClickListener
 import javax.inject.Inject
 
 class MainActivityDecorator
 @Inject
 constructor(
-        val activity: AppCompatActivity,
+        val activity: BaseActivity,
         val layoutManager: LinearLayoutManager,
         val adapter: ChannelsAdapter
 ) : MainActivityUserInterface {
@@ -59,9 +60,9 @@ constructor(
 
     override fun initialize(delegate: MainActivityUserInterface.Delegate, viewModel: ChannelsViewModel) {
         this.delegate = delegate
-//        toolbar.title = ""
         list.adapter = adapter
         adapter.setClickListener(channelsClickListener)
+        viewModel.channels.observe(activity, Observer<List<Channel>> { it -> adapter.swap(it) })
     }
 
     private fun showChannels(channels: List<Channel>) {
@@ -72,7 +73,7 @@ constructor(
     private fun initToolbar() {
         activity.setSupportActionBar(toolbar)
         val actionBar = activity.supportActionBar
-        actionBar?.setDisplayShowTitleEnabled(false)
+        actionBar?.setDisplayShowTitleEnabled(true)
         actionBar?.setIcon(R.mipmap.ic_launcher)
     }
 }

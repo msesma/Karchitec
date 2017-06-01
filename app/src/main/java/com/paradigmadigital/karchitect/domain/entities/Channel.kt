@@ -6,7 +6,8 @@ import android.arch.persistence.room.PrimaryKey
 @Entity(tableName = "channels")
 class Channel(
         @PrimaryKey
-        var link: String,
+        var linkKey: String,
         var title: String,
-        var description: String
+        var description: String,
+        var qtty: Int
 )

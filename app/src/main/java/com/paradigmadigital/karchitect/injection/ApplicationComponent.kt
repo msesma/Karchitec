@@ -7,7 +7,6 @@ import com.paradigmadigital.karchitect.domain.db.ChannelsDao
 import com.paradigmadigital.karchitect.domain.db.ItemsDao
 import com.paradigmadigital.karchitect.platform.ApplicationModule
 import com.paradigmadigital.karchitect.ui.main.ChannelsViewModel
-import com.squareup.picasso.Picasso
 import dagger.Component
 import okhttp3.OkHttpClient
 import java.util.concurrent.Executor
@@ -26,8 +25,6 @@ interface ApplicationComponent {
     fun provideContext(): Context
 
     fun provideOkHttpClient(): OkHttpClient
-
-    fun providePicasso(): Picasso
 
     fun provideChannelsDao(): ChannelsDao
 

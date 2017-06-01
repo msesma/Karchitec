@@ -15,6 +15,7 @@ import java.io.IOException
 import java.util.concurrent.Executor
 import javax.inject.Inject
 
+
 class FeedRepository
 @Inject
 constructor(
@@ -44,7 +45,7 @@ constructor(
                     .create(FeedService::class.java)
 
             try {
-                val response = feedService.getFeed().execute()
+                val response = feedService.getFeed("").execute()
                 val feed = response.body()
                 val channel = channelMapper.map(feed)
                 val items = itemsMapper.map(feed)

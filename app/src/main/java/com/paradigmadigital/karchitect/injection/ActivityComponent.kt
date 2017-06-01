@@ -1,7 +1,7 @@
 package com.paradigmadigital.karchitect.injection
 
-import android.support.v7.app.AppCompatActivity
 import com.paradigmadigital.karchitect.platform.ActivityModule
+import com.paradigmadigital.karchitect.platform.BaseActivity
 import com.paradigmadigital.karchitect.ui.main.MainActivity
 import dagger.Component
 
@@ -12,5 +12,5 @@ interface ActivityComponent {
     fun inject(mainActivity: MainActivity)
 
     //Exposed to sub-graphs.
-    fun activity(): AppCompatActivity
+    fun activity(): BaseActivity
 }

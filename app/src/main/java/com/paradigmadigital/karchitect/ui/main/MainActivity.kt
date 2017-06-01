@@ -1,16 +1,15 @@
 package com.paradigmadigital.karchitect.ui.main
 
 import android.arch.lifecycle.LifecycleRegistry
-import android.arch.lifecycle.LifecycleRegistryOwner
 import android.arch.lifecycle.ViewModelProviders
 import com.paradigmadigital.karchitect.platform.BaseActivity
 
 
 
 
-class MainActivity : BaseActivity(), LifecycleRegistryOwner {
+class MainActivity : BaseActivity() {
 
-    private val lifecycleRegistry = LifecycleRegistry(this)
+
 
     @javax.inject.Inject
     lateinit var decorator: MainActivityDecorator
@@ -31,11 +30,8 @@ class MainActivity : BaseActivity(), LifecycleRegistryOwner {
     }
 
     override fun onDestroy() {
+        super.onDestroy()
         presenter.dispose()
         decorator.dispose()
-    }
-
-    override fun getLifecycle(): LifecycleRegistry {
-        return lifecycleRegistry
     }
 }

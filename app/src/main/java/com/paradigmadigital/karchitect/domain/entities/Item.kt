@@ -8,14 +8,14 @@ import android.arch.persistence.room.PrimaryKey
 @Entity(tableName = "items",
         foreignKeys = arrayOf(ForeignKey(
                 entity = Channel::class,
-                parentColumns = arrayOf("link"),
-                childColumns = arrayOf("channelLink"),
+                parentColumns = arrayOf("linkKey"),
+                childColumns = arrayOf("channelKey"),
                 onDelete = ForeignKey.CASCADE)),
-        indices = arrayOf(Index(value = "channelLink")))
+        indices = arrayOf(Index(value = "channelKey")))
 class Item(
         @PrimaryKey(autoGenerate = true)
         var id: Int = 0,
-        var channelLink: String,
+        var channelKey: String,
         var pubDate: String,
         var title: String,
         var link: String,

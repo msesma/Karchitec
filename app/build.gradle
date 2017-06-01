@@ -87,14 +87,11 @@ dependencies {
     compile "com.squareup.okhttp3:okhttp:$okhttp"
     compile "com.squareup.okhttp3:logging-interceptor:$okhttp"
     compile "com.squareup.retrofit2:retrofit:$retrofit"
-//    compile "com.squareup.retrofit2:converter-gson:$converter_gson"
     compile ('com.squareup.retrofit2:converter-simplexml:2.0.0') {
         exclude group: 'xpp3', module: 'xpp3'
         exclude group: 'stax', module: 'stax-api'
         exclude group: 'stax', module: 'stax'
     }
-    compile "com.squareup.picasso:picasso:$picasso"
-    compile "com.jakewharton.timber:timber:$timber"
 
 /*    testCompile "junit:junit:$junit"
     testCompile "org.robolectric:robolectric:$robolectric"

@@ -8,13 +8,13 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class ActivityModule(private val activity: AppCompatActivity) {
+class ActivityModule(private val activity: BaseActivity) {
 
     @Provides
     @PerActivity
-    internal fun activity(): AppCompatActivity = this.activity
+    internal fun activity(): BaseActivity = this.activity
 
     @Provides
     @PerActivity
-    internal fun provideLinearLayoutManager(activity: AppCompatActivity) = LinearLayoutManager(activity as Context)
+    internal fun provideLinearLayoutManager(activity: BaseActivity) = LinearLayoutManager(activity as Context)
 }

@@ -1,7 +1,6 @@
-package com.paradigmadigital.karchitect.ui.main
+package com.paradigmadigital.karchitect.ui.detail
 
 import android.arch.lifecycle.Observer
-import android.support.design.widget.FloatingActionButton
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
@@ -11,30 +10,28 @@ import android.view.View
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.paradigmadigital.karchitect.R
-import com.paradigmadigital.karchitect.domain.entities.Channel
+import com.paradigmadigital.karchitect.domain.entities.Item
 import com.paradigmadigital.karchitect.platform.BaseActivity
 import javax.inject.Inject
 
-class MainActivityDecorator
+class DetailActivityDecorator
 @Inject
 constructor(
         val activity: BaseActivity,
         val layoutManager: LinearLayoutManager,
-        val adapter: MainAdapter
-) : MainActivityUserInterface {
+        val adapter: DetailAdapter
+) : DetailActivityUserInterface {
 
     @BindView(R.id.toolbar)
     lateinit var toolbar: Toolbar
-    @BindView(R.id.main_list)
+    @BindView(R.id.detail_list)
     lateinit var list: RecyclerView
     @BindView(R.id.swipeRefreshLayout)
     lateinit var swipeRefresh: SwipeRefreshLayout
-    @BindView(R.id.fab)
-    lateinit var fab: FloatingActionButton
 
-    private var delegate: MainActivityUserInterface.Delegate? = null
+    private var delegate: DetailActivityUserInterface.Delegate? = null
 
-    private val channelsClickListener = object : MainClickListener {
+    private val clickListener = object : DetailClickListener {
         override fun onClick(index: Int) {
             delegate?.onClick(adapter.getItemAtPosition(index))
         }
@@ -42,31 +39,28 @@ constructor(
 
     private var refreshListener: SwipeRefreshLayout.OnRefreshListener = SwipeRefreshLayout.OnRefreshListener { delegate?.onRefresh() }
 
-    private val fabListener: View.OnClickListener = View.OnClickListener { delegate?.onFab() }
-
     fun bind(view: View) {
         ButterKnife.bind(this, view)
         initToolbar()
         list.layoutManager = layoutManager
         list.itemAnimator = DefaultItemAnimator()
         swipeRefresh.setOnRefreshListener(refreshListener)
-        fab.setOnClickListener { fabListener }
     }
 
     fun dispose() {
         delegate = null
     }
 
-    override fun initialize(delegate: MainActivityUserInterface.Delegate, viewModel: MainViewModel) {
+    override fun initialize(delegate: DetailActivityUserInterface.Delegate, viewModel: DetailViewModel) {
         this.delegate = delegate
         list.adapter = adapter
-        adapter.setClickListener(channelsClickListener)
-        viewModel.channels.observe(activity, Observer<List<Channel>> { it -> adapter.swap(it) })
+        adapter.setClickListener(clickListener)
+        viewModel.items?.observe(activity, Observer<List<Item>> { it -> adapter.swap(it) })
     }
 
-    private fun showChannels(channels: List<Channel>) {
-        list.visibility = if (channels.isEmpty()) View.INVISIBLE else View.VISIBLE
-        adapter.swap(channels)
+    private fun showChannels(items: List<Item>) {
+        list.visibility = if (items.isEmpty()) View.INVISIBLE else View.VISIBLE
+        adapter.swap(items)
     }
 
     private fun initToolbar() {

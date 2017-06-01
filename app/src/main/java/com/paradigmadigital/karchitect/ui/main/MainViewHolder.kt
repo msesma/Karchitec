@@ -10,9 +10,8 @@ import butterknife.ButterKnife
 import butterknife.OnClick
 import com.paradigmadigital.karchitect.R
 import com.paradigmadigital.karchitect.domain.entities.Channel
-import com.paradigmadigital.paraguas.ui.master.ChannelsClickListener
 
-class ChannelsViewHolder(
+class MainViewHolder(
         itemView: ViewGroup
 ) : RecyclerView.ViewHolder(itemView) {
 
@@ -22,7 +21,7 @@ class ChannelsViewHolder(
     lateinit var qtty: TextView
 
     lateinit private var channel: Channel
-    private var channelClickListener: ChannelsClickListener? = null
+    private var clickListener: MainClickListener? = null
 
     private val context: Context
     private val resources: Resources
@@ -33,9 +32,9 @@ class ChannelsViewHolder(
         context = itemView.context
     }
 
-    fun bind(channel: Channel, forecastClickListener: ChannelsClickListener?) {
+    fun bind(channel: Channel, clickListener: MainClickListener?) {
         this.channel = channel
-        this.channelClickListener = forecastClickListener
+        this.clickListener = clickListener
         configureView()
     }
 
@@ -44,8 +43,8 @@ class ChannelsViewHolder(
         desc.text = "${channel.title}: ${channel.description}"
     }
 
-    @OnClick(R.id.forecast_row)
+    @OnClick(R.id.main_row)
     internal fun onRowClick() {
-        channelClickListener?.onClick(adapterPosition)
+        clickListener?.onClick(adapterPosition)
     }
 }

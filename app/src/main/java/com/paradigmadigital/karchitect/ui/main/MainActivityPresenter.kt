@@ -12,7 +12,7 @@ constructor(
 ) {
 
     private var decorator: MainActivityUserInterface? = null
-    private lateinit var viewModel: ChannelsViewModel
+    private lateinit var viewModel: MainViewModel
 
     private val delegate = object : MainActivityUserInterface.Delegate {
         override fun onFab() {
@@ -29,14 +29,14 @@ constructor(
 
     }
 
-    fun initialize(decorator: MainActivityUserInterface, viewModel: ChannelsViewModel) {
+    fun initialize(decorator: MainActivityUserInterface, viewModel: MainViewModel) {
         this.decorator = decorator
         this.viewModel = viewModel
         this.decorator?.initialize(delegate, viewModel)
         initApp(viewModel)
     }
 
-    private fun initApp(viewModel: ChannelsViewModel) {
+    private fun initApp(viewModel: MainViewModel) {
         if (viewModel.channels.value.isNullOrEmpty()) {
             repository.getItems("http://www.paradigmatecnologico.com/feed/")
         }

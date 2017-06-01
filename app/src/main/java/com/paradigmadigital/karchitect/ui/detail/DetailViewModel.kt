@@ -1,24 +1,27 @@
-package com.paradigmadigital.karchitect.ui.main
+package com.paradigmadigital.karchitect.ui.detail
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
 import com.paradigmadigital.karchitect.domain.FeedRepository
-import com.paradigmadigital.karchitect.domain.entities.Channel
+import com.paradigmadigital.karchitect.domain.entities.Item
 import com.paradigmadigital.karchitect.platform.AndroidApplication
 import javax.inject.Inject
 
-data class ChannelsViewModel
+data class DetailViewModel
 constructor(
         val app: Application
 ) : AndroidViewModel(app) {
 
     @Inject lateinit var repository: FeedRepository
 
-    val channels: LiveData<List<Channel>>
+    var items: LiveData<List<Item>>? = null
 
     init {
         (app as AndroidApplication).applicationComponent.inject(this)
-        channels = repository.channels
+    }
+
+    fun initialize(channelLink: String) {
+        items = repository.getItems(channelLink);
     }
 }

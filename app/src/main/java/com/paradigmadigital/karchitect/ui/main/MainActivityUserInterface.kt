@@ -4,7 +4,7 @@ import com.paradigmadigital.karchitect.domain.entities.Channel
 
 interface MainActivityUserInterface {
 
-    fun initialize(delegate: Delegate, viewModel: ChannelsViewModel)
+    fun initialize(delegate: Delegate, viewModel: MainViewModel)
 
     interface Delegate {
 

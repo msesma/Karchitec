@@ -6,24 +6,23 @@ import android.view.ViewGroup
 import com.paradigmadigital.karchitect.R
 import com.paradigmadigital.karchitect.domain.entities.Channel
 
-import com.paradigmadigital.paraguas.ui.master.ChannelsClickListener
 import javax.inject.Inject
 
-class ChannelsAdapter
+class MainAdapter
 @Inject
-constructor() : RecyclerView.Adapter<ChannelsViewHolder>() {
+constructor() : RecyclerView.Adapter<MainViewHolder>() {
 
     private var channels: List<Channel> = listOf()
-    private var forecastClickListener: ChannelsClickListener? = null
+    private var clickListener: MainClickListener? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChannelsViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.channel_line, parent, false) as ViewGroup
-        return ChannelsViewHolder(view)
+                .inflate(R.layout.main_line, parent, false) as ViewGroup
+        return MainViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ChannelsViewHolder, position: Int) =
-            holder.bind(channels[position], forecastClickListener)
+    override fun onBindViewHolder(holder: MainViewHolder, position: Int) =
+            holder.bind(channels[position], clickListener)
 
     override fun getItemCount() = channels.size
 
@@ -34,8 +33,8 @@ constructor() : RecyclerView.Adapter<ChannelsViewHolder>() {
         }
     }
 
-    fun setClickListener(forecastClickListener: ChannelsClickListener) {
-        this.forecastClickListener = forecastClickListener
+    fun setClickListener(forecastClickListener: MainClickListener) {
+        this.clickListener = forecastClickListener
     }
 
     fun getItemAtPosition(position: Int): Channel {

@@ -15,14 +15,16 @@ import java.io.IOException
 import java.util.concurrent.Executor
 import javax.inject.Inject
 
-class FeedRepository @Inject
+class FeedRepository
+@Inject
 constructor(
-        private val client: OkHttpClient,
-        private val channelsDao: ChannelsDao,
-        private val itemsDao: ItemsDao,
-        private val executor: Executor,
-        private val channelMapper: ChannelMapper,
-        private val itemsMapper: ItemsMapper) {
+    val client: OkHttpClient,
+    val itemsDao: ItemsDao,
+    val channelsDao: ChannelsDao,
+    val executor: Executor,
+    val channelMapper: ChannelMapper,
+    val itemsMapper: ItemsMapper
+) {
 
     val channels: LiveData<List<Channel>>
         get() = channelsDao.getChannels()

@@ -5,7 +5,9 @@ import android.arch.persistence.room.RoomDatabase
 import com.paradigmadigital.karchitect.domain.entities.Channel
 import com.paradigmadigital.karchitect.domain.entities.Item
 
-@Database(entities = arrayOf(Channel::class, Item::class), version = 1)
+@Database(entities = arrayOf(Channel::class, Item::class),
+        version = 1,
+        exportSchema = false)
 abstract class FeedDb : RoomDatabase() {
 
     abstract fun channelsDao(): ChannelsDao

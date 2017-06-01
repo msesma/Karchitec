@@ -30,12 +30,6 @@ class MainActivity : BaseActivity(), LifecycleRegistryOwner {
         presenter.initialize(decorator, viewModel)
     }
 
-
-    override fun onResume() {
-        super.onResume()
-//        presenter.onResume()
-    }
-
     override fun onDestroy() {
         presenter.dispose()
         decorator.dispose()

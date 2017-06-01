@@ -10,7 +10,7 @@ import com.paradigmadigital.karchitect.domain.entities.Channel
 @Dao
 abstract class ChannelsDao {
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insert(channel: Channel)
 
     @Query("SELECT * FROM channels")

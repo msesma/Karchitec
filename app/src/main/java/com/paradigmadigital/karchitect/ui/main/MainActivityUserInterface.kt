@@ -11,5 +11,7 @@ interface MainActivityUserInterface {
         fun onRefresh()
 
         fun onClick(channel: Channel)
+
+        fun onFab()
     }
 }

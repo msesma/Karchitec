@@ -1,12 +1,12 @@
 package com.paradigmadigital.karchitect.ui.main
 
+import android.support.design.widget.FloatingActionButton
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
-import android.util.Log
 import android.view.View
 import butterknife.BindView
 import butterknife.ButterKnife
@@ -29,7 +29,8 @@ constructor(
     lateinit var list: RecyclerView
     @BindView(R.id.swipeRefreshLayout)
     lateinit var swipeRefresh: SwipeRefreshLayout
-
+    @BindView(R.id.fab)
+    lateinit var fab: FloatingActionButton
 
     private var delegate: MainActivityUserInterface.Delegate? = null
 
@@ -39,8 +40,9 @@ constructor(
         }
     }
 
-    internal var refreshListener: SwipeRefreshLayout.OnRefreshListener = SwipeRefreshLayout.OnRefreshListener { delegate?.onRefresh() }
+    private var refreshListener: SwipeRefreshLayout.OnRefreshListener = SwipeRefreshLayout.OnRefreshListener { delegate?.onRefresh() }
 
+    private val fabListener: View.OnClickListener = View.OnClickListener { delegate?.onFab() }
 
     fun bind(view: View) {
         ButterKnife.bind(this, view)
@@ -48,6 +50,7 @@ constructor(
         list.layoutManager = layoutManager
         list.itemAnimator = DefaultItemAnimator()
         swipeRefresh.setOnRefreshListener(refreshListener)
+        fab.setOnClickListener { fabListener }
     }
 
     fun dispose() {
@@ -56,7 +59,7 @@ constructor(
 
     override fun initialize(delegate: MainActivityUserInterface.Delegate, viewModel: ChannelsViewModel) {
         this.delegate = delegate
-        toolbar.title = ""
+//        toolbar.title = ""
         list.adapter = adapter
         adapter.setClickListener(channelsClickListener)
     }

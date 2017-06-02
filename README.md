@@ -1,20 +1,18 @@
-Paraguas
+Karchitec
 ================
 
-#Current weather and hourly forecast
+#Kotlin RSS reader using Google android architecture components libraries
 
 Pet project for testing several technologies:
 - Kotlin
-- MVP architecture
+- MVVM architecture Slightly modifoed (It has a presenter :D)
+- Google architecture components 
 - Dagger 2 Dependency injection
-- RxJava 2
-- Retrofit Rx
-- Firebase Job dispatcher
-- Android wear face with weather support
 - Constraint layout
-- MockWebServer based Unit testing for RxJava
-- Espresso tests
+- MockWebServer based Unit testing for RxJava (Pending)
+- Espresso tests (Pending)
  
-Shows the Current weather and hourly forecast for the next 36 hours. 
-Android location  permissions are supported by means of Easypermissions library (https://github.com/googlesamples/easypermissions). Storage permission must be granted manually, but it is only necessary for disk logging.
+Simple RSS reader still in an early stage. It is mostly a pet project to test the architecture components in kotlin.
+I've extracted the view to a decorator class in order to maintain the activities as clean as possible. I've also added a presenter for removing the not Data related logic from the ViewModel.
+
 

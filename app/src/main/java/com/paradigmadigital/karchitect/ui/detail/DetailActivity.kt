@@ -5,7 +5,9 @@ import com.paradigmadigital.karchitect.platform.BaseActivity
 
 class DetailActivity : BaseActivity() {
 
-    val CHANNEL_KEY = "om.paradigmadigital.karchitect.channel.key"
+    companion object {
+        val CHANNEL_KEY = "om.paradigmadigital.karchitect.channel.key"
+    }
 
     @javax.inject.Inject
     lateinit var decorator: DetailActivityDecorator
@@ -20,7 +22,7 @@ class DetailActivity : BaseActivity() {
         activityComponent.inject(this)
 
         viewModel = ViewModelProviders.of(this).get(DetailViewModel::class.java)
-        viewModel.initialize(bundle?.getString(CHANNEL_KEY) ?: "")
+        viewModel.initialize(intent?.getStringExtra(CHANNEL_KEY) ?: "")
 
         decorator.bind(getRootView())
         presenter.initialize(decorator, viewModel)

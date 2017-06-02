@@ -2,4 +2,8 @@
     <string name="app_name">Karchitec</string>
     <string name="refresh">Refresh</string>
     <string name="connection_error">Connection error</string>
+    <string name="add">ADD</string>
+    <string name="cancel">CANCEL</string>
+    <string name="add_channel">Add RSS feed</string>
+    <string name="add_channel_text">Enter the RSS feed URL</string>
 </resources>

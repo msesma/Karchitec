@@ -3,6 +3,7 @@ package com.paradigmadigital.karchitect.ui.main
 import android.arch.lifecycle.Observer
 import android.support.design.widget.FloatingActionButton
 import android.support.v4.widget.SwipeRefreshLayout
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -10,9 +11,11 @@ import android.support.v7.widget.Toolbar
 import android.view.View
 import butterknife.BindView
 import butterknife.ButterKnife
+import butterknife.OnClick
 import com.paradigmadigital.karchitect.R
 import com.paradigmadigital.karchitect.domain.entities.Channel
 import com.paradigmadigital.karchitect.platform.BaseActivity
+import com.paradigmadigital.karchitect.ui.TextAlertDialog
 import javax.inject.Inject
 
 class MainActivityDecorator
@@ -20,7 +23,8 @@ class MainActivityDecorator
 constructor(
         val activity: BaseActivity,
         val layoutManager: LinearLayoutManager,
-        val adapter: MainAdapter
+        val adapter: MainAdapter,
+        val dialog: TextAlertDialog
 ) : MainActivityUserInterface {
 
     @BindView(R.id.toolbar)
@@ -40,9 +44,7 @@ constructor(
         }
     }
 
-    private var refreshListener: SwipeRefreshLayout.OnRefreshListener = SwipeRefreshLayout.OnRefreshListener { delegate?.onRefresh() }
-
-    private val fabListener: View.OnClickListener = View.OnClickListener { delegate?.onFab() }
+    private var refreshListener = OnRefreshListener { delegate?.onRefresh() }
 
     fun bind(view: View) {
         ButterKnife.bind(this, view)
@@ -50,7 +52,6 @@ constructor(
         list.layoutManager = layoutManager
         list.itemAnimator = DefaultItemAnimator()
         swipeRefresh.setOnRefreshListener(refreshListener)
-        fab.setOnClickListener { fabListener }
     }
 
     fun dispose() {
@@ -62,6 +63,11 @@ constructor(
         list.adapter = adapter
         adapter.setClickListener(channelsClickListener)
         viewModel.channels.observe(activity, Observer<List<Channel>> { it -> adapter.swap(it) })
+    }
+
+    @OnClick(R.id.fab)
+    fun onFabClick() {
+        dialog.show(R.string.add_channel, R.string.add_channel_text, { delegate?.onAddChannel(it) })
     }
 
     private fun showChannels(channels: List<Channel>) {

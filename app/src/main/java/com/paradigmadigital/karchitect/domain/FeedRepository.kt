@@ -11,7 +11,6 @@ import com.paradigmadigital.karchitect.domain.mappers.ItemsMapper
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory
-import java.io.IOException
 import java.util.concurrent.Executor
 import javax.inject.Inject
 
@@ -19,25 +18,35 @@ import javax.inject.Inject
 class FeedRepository
 @Inject
 constructor(
-    val client: OkHttpClient,
-    val itemsDao: ItemsDao,
-    val channelsDao: ChannelsDao,
-    val executor: Executor,
-    val channelMapper: ChannelMapper,
-    val itemsMapper: ItemsMapper
+        val client: OkHttpClient,
+        val itemsDao: ItemsDao,
+        val channelsDao: ChannelsDao,
+        val executor: Executor,
+        val channelMapper: ChannelMapper,
+        val itemsMapper: ItemsMapper
 ) {
 
-    val channels: LiveData<List<Channel>>
-        get() = channelsDao.getChannels()
+    fun getChannels(): LiveData<List<Channel>> {
+        refreshItems()
+        return channelsDao.getChannels()
+    }
+
+    fun addChannel(channelLink: String) = refreshItems(channelLink)
 
     fun getItems(channelLink: String): LiveData<List<Item>> {
-        refreshItems(channelLink)
         return itemsDao.getAll(channelLink)
+    }
+
+    fun refreshItems() {
+        val channels = channelsDao.getChannels().value ?: emptyList()
+        for (channel in channels) {
+            refreshItems(channel.linkKey)
+        }
     }
 
     private fun refreshItems(channelLink: String) {
         executor.execute {
-            val feedService= Retrofit.Builder()
+            val feedService = Retrofit.Builder()
                     .client(client)
                     .addConverterFactory(SimpleXmlConverterFactory.create())
                     .baseUrl(channelLink)
@@ -47,14 +56,17 @@ constructor(
             try {
                 val response = feedService.getFeed("").execute()
                 val feed = response.body()
+                feed.url = channelLink
                 val channel = channelMapper.map(feed)
                 val items = itemsMapper.map(feed)
 
                 channelsDao.insert(channel)
                 itemsDao.insert(items)
-            } catch (e: IOException) {
+            } catch (e: Throwable) {
                 // TODO check for error etc.
             }
         }
     }
+
+
 }

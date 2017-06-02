@@ -19,6 +19,6 @@ constructor(
 
     init {
         (app as AndroidApplication).applicationComponent.inject(this)
-        channels = repository.channels
+        channels = repository.getChannels()
     }
 }

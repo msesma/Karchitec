@@ -12,6 +12,6 @@ interface MainActivityUserInterface {
 
         fun onClick(channel: Channel)
 
-        fun onFab()
+        fun onAddChannel(channelUrl: String)
     }
 }

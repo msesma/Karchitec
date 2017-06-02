@@ -3,6 +3,7 @@ package com.paradigmadigital.karchitect.ui.main
 import com.paradigmadigital.karchitect.domain.FeedRepository
 import com.paradigmadigital.karchitect.domain.entities.Channel
 import com.paradigmadigital.karchitect.navigation.Navigator
+import com.paradigmadigital.karchitect.platform.isNullOrEmpty
 import javax.inject.Inject
 
 class MainActivityPresenter
@@ -31,10 +32,10 @@ constructor(
     }
 
     private fun initApp(viewModel: MainViewModel) {
-//        if (viewModel.channels.value.isNullOrEmpty()) {
-//            repository.addChannel("http://www.paradigmatecnologico.com/feed/")
-//            repository.addChannel("http://feed.androidauthority.com/")
-//        }
+        if (viewModel.channels.value.isNullOrEmpty()) {
+            repository.addChannel("http://www.paradigmatecnologico.com/feed/")
+            repository.addChannel("http://feed.androidauthority.com/")
+        }
     }
 
     fun dispose() {

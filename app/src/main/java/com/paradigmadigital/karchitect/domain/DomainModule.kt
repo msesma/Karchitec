@@ -21,7 +21,7 @@ class DomainModule() {
     @Provides
     fun provideFeedDb(application: Context): FeedDb {
         return Room.databaseBuilder(application, FeedDb::class.java, "feed.db")
-//                .allowMainThreadQueries()
+                .allowMainThreadQueries()
                 .build()
     }
 

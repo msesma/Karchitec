@@ -18,7 +18,4 @@ abstract class ChannelsDao {
 
     @Query("SELECT * FROM channels")
     abstract fun getChannelsSync(): List<Channel>
-
-    @Query("SELECT * FROM channels WHERE linkKey = :p0")
-    abstract fun getChannelInfo(linkKey: String): LiveData<Channel>
 }

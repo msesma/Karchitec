@@ -13,11 +13,10 @@ import android.arch.persistence.room.PrimaryKey
                 onDelete = ForeignKey.CASCADE)),
         indices = arrayOf(Index(value = "channelKey")))
 class Item(
-        @PrimaryKey(autoGenerate = true)
-        var id: Int = 0,
+        @PrimaryKey
+        var link: String,
         var channelKey: String,
         var pubDate: String,
         var title: String,
-        var link: String,
         var description: String
 )

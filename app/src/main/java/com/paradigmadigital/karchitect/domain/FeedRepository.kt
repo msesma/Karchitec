@@ -1,7 +1,6 @@
 package com.paradigmadigital.karchitect.domain
 
 import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.Observer
 import com.paradigmadigital.karchitect.api.services.FeedService
 import com.paradigmadigital.karchitect.domain.db.ChannelsDao
 import com.paradigmadigital.karchitect.domain.db.ItemsDao
@@ -24,15 +23,9 @@ constructor(
         val itemsMapper: ItemsMapper
 ) {
 
-    var channelLiveData: LiveData<List<Channel>>? = null
-    val observer = Observer<List<Channel>>{ refreshItems(it) }
-
     fun getChannels(): LiveData<List<Channel>> {
-        if (channelLiveData == null) {
-            channelLiveData = channelsDao.getChannels()
-            channelLiveData?.observeForever(observer)
-        }
-        return channelLiveData!!
+        refreshItems()
+        return channelsDao.getChannels()
     }
 
     fun addChannel(channelLink: String) = refreshItems(channelLink)
@@ -42,16 +35,10 @@ constructor(
     }
 
     fun refreshItems() {
-        refreshItems(channelLiveData?.value ?: emptyList())
-    }
-
-    private fun refreshItems(channels: List<Channel>?) {
-        if (channels != null) {
-            for (channel in channels) {
-                refreshItems(channel.linkKey)
-            }
+        val channels = channelsDao.getChannelsSync() ?: emptyList()
+        for (channel in channels) {
+            refreshItems(channel.linkKey)
         }
-        channelLiveData?.removeObserver(observer)
     }
 
     private fun refreshItems(channelLink: String) {

@@ -8,8 +8,6 @@ interface DetailActivityUserInterface {
 
     interface Delegate {
 
-        fun onRefresh()
-
         fun onClick(item: Item)
 
     }

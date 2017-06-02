@@ -1,28 +1,18 @@
 package com.paradigmadigital.karchitect.ui.detail
 
-import com.paradigmadigital.karchitect.domain.FeedRepository
 import com.paradigmadigital.karchitect.domain.entities.Item
 import javax.inject.Inject
 
 class DetailActivityPresenter
-@Inject
-constructor(
-        val repository: FeedRepository
-) {
+@Inject constructor() {
 
     private var decorator: DetailActivityUserInterface? = null
     private lateinit var viewModel: DetailViewModel
 
     private val delegate = object : DetailActivityUserInterface.Delegate {
-
-        override fun onRefresh() {
-            //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        }
-
         override fun onClick(item: Item) {
-            //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            //TODO open WebView with the item link
         }
-
     }
 
     fun initialize(decorator: DetailActivityUserInterface, viewModel: DetailViewModel) {

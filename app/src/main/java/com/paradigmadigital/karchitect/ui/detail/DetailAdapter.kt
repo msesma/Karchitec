@@ -16,7 +16,7 @@ constructor() : RecyclerView.Adapter<DetailViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailViewHolder {
         val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.main_line, parent, false) as ViewGroup
+                .inflate(R.layout.detail_line, parent, false) as ViewGroup
         return DetailViewHolder(view)
     }
 

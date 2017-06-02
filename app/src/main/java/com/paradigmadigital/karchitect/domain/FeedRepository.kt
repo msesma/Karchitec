@@ -1,6 +1,7 @@
 package com.paradigmadigital.karchitect.domain
 
 import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.Observer
 import com.paradigmadigital.karchitect.api.services.FeedService
 import com.paradigmadigital.karchitect.domain.db.ChannelsDao
 import com.paradigmadigital.karchitect.domain.db.ItemsDao
@@ -12,11 +13,8 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory
 import java.util.concurrent.Executor
-import javax.inject.Inject
-
 
 class FeedRepository
-@Inject
 constructor(
         val client: OkHttpClient,
         val itemsDao: ItemsDao,
@@ -26,9 +24,15 @@ constructor(
         val itemsMapper: ItemsMapper
 ) {
 
+    var channelLiveData: LiveData<List<Channel>>? = null
+    val observer = Observer<List<Channel>>{ refreshItems(it) }
+
     fun getChannels(): LiveData<List<Channel>> {
-        refreshItems()
-        return channelsDao.getChannels()
+        if (channelLiveData == null) {
+            channelLiveData = channelsDao.getChannels()
+            channelLiveData?.observeForever(observer)
+        }
+        return channelLiveData!!
     }
 
     fun addChannel(channelLink: String) = refreshItems(channelLink)
@@ -38,10 +42,16 @@ constructor(
     }
 
     fun refreshItems() {
-        val channels = channelsDao.getChannels().value ?: emptyList()
-        for (channel in channels) {
-            refreshItems(channel.linkKey)
+        refreshItems(channelLiveData?.value ?: emptyList())
+    }
+
+    private fun refreshItems(channels: List<Channel>?) {
+        if (channels != null) {
+            for (channel in channels) {
+                refreshItems(channel.linkKey)
+            }
         }
+        channelLiveData?.removeObserver(observer)
     }
 
     private fun refreshItems(channelLink: String) {

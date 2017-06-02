@@ -5,8 +5,11 @@ import android.content.Context
 import com.paradigmadigital.karchitect.domain.db.ChannelsDao
 import com.paradigmadigital.karchitect.domain.db.FeedDb
 import com.paradigmadigital.karchitect.domain.db.ItemsDao
+import com.paradigmadigital.karchitect.domain.mappers.ChannelMapper
+import com.paradigmadigital.karchitect.domain.mappers.ItemsMapper
 import dagger.Module
 import dagger.Provides
+import okhttp3.OkHttpClient
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 import javax.inject.Singleton
@@ -17,7 +20,9 @@ class DomainModule() {
     @Singleton
     @Provides
     fun provideFeedDb(application: Context): FeedDb {
-        return Room.databaseBuilder(application, FeedDb::class.java, "feed.db").build()
+        return Room.databaseBuilder(application, FeedDb::class.java, "feed.db")
+//                .allowMainThreadQueries()
+                .build()
     }
 
     @Singleton
@@ -36,5 +41,16 @@ class DomainModule() {
     @Provides
     fun provideExecutor(): Executor {
         return Executors.newSingleThreadExecutor()
+    }
+
+    @Singleton
+    @Provides
+    fun provideRepository(client: OkHttpClient,
+                          itemsDao: ItemsDao,
+                          channelsDao: ChannelsDao,
+                          executor: Executor,
+                          channelMapper: ChannelMapper,
+                          itemsMapper: ItemsMapper): FeedRepository {
+        return FeedRepository(client,itemsDao,channelsDao,executor,channelMapper,itemsMapper)
     }
 }

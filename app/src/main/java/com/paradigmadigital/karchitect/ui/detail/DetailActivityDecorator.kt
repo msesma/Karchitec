@@ -1,7 +1,6 @@
 package com.paradigmadigital.karchitect.ui.detail
 
 import android.arch.lifecycle.Observer
-import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -26,8 +25,6 @@ constructor(
     lateinit var toolbar: Toolbar
     @BindView(R.id.detail_list)
     lateinit var list: RecyclerView
-    @BindView(R.id.swipeRefreshLayout)
-    lateinit var swipeRefresh: SwipeRefreshLayout
 
     private var delegate: DetailActivityUserInterface.Delegate? = null
 
@@ -37,14 +34,11 @@ constructor(
         }
     }
 
-    private var refreshListener: SwipeRefreshLayout.OnRefreshListener = SwipeRefreshLayout.OnRefreshListener { delegate?.onRefresh() }
-
     fun bind(view: View) {
         ButterKnife.bind(this, view)
         initToolbar()
         list.layoutManager = layoutManager
         list.itemAnimator = DefaultItemAnimator()
-        swipeRefresh.setOnRefreshListener(refreshListener)
     }
 
     fun dispose() {
@@ -56,11 +50,6 @@ constructor(
         list.adapter = adapter
         adapter.setClickListener(clickListener)
         viewModel.items?.observe(activity, Observer<List<Item>> { it -> adapter.swap(it) })
-    }
-
-    private fun showChannels(items: List<Item>) {
-        list.visibility = if (items.isEmpty()) View.INVISIBLE else View.VISIBLE
-        adapter.swap(items)
     }
 
     private fun initToolbar() {

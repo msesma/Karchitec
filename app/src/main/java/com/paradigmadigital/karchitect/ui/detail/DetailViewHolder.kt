@@ -17,8 +17,8 @@ class DetailViewHolder(
 
     @BindView(R.id.desc)
     lateinit var desc: TextView
-    @BindView(R.id.qtty)
-    lateinit var qtty: TextView
+    @BindView(R.id.title)
+    lateinit var title: TextView
 
     lateinit private var item: Item
     private var clickListener: DetailClickListener? = null
@@ -39,8 +39,8 @@ class DetailViewHolder(
     }
 
     private fun configureView() {
-//        qtty.text = "${item.qtty}"
-//        desc.text = "${item.title}: ${item.description}"
+        title.text = item.title
+        desc.text = item.description
     }
 
     @OnClick(R.id.detail_row)

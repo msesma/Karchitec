@@ -3,6 +3,7 @@ package com.paradigmadigital.karchitect.injection
 import android.content.Context
 import com.paradigmadigital.karchitect.api.ApiModule
 import com.paradigmadigital.karchitect.domain.DomainModule
+import com.paradigmadigital.karchitect.domain.FeedRepository
 import com.paradigmadigital.karchitect.domain.db.ChannelsDao
 import com.paradigmadigital.karchitect.domain.db.ItemsDao
 import com.paradigmadigital.karchitect.platform.ApplicationModule
@@ -34,4 +35,6 @@ interface ApplicationComponent {
     fun provideItemsDao(): ItemsDao
 
     fun provideExecutor(): Executor
+
+    fun provideFeedRepository(): FeedRepository
 }

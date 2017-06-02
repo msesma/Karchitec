@@ -15,6 +15,7 @@ import butterknife.OnClick
 import com.paradigmadigital.karchitect.R
 import com.paradigmadigital.karchitect.domain.entities.Channel
 import com.paradigmadigital.karchitect.platform.BaseActivity
+import com.paradigmadigital.karchitect.platform.isNullOrEmpty
 import com.paradigmadigital.karchitect.ui.TextAlertDialog
 import javax.inject.Inject
 
@@ -62,7 +63,7 @@ constructor(
         this.delegate = delegate
         list.adapter = adapter
         adapter.setClickListener(channelsClickListener)
-        viewModel.channels.observe(activity, Observer<List<Channel>> { it -> adapter.swap(it) })
+        viewModel.channels.observe(activity, Observer<List<Channel>> { showChannels(it) })
     }
 
     @OnClick(R.id.fab)
@@ -70,8 +71,9 @@ constructor(
         dialog.show(R.string.add_channel, R.string.add_channel_text, { delegate?.onAddChannel(it) })
     }
 
-    private fun showChannels(channels: List<Channel>) {
-        list.visibility = if (channels.isEmpty()) View.INVISIBLE else View.VISIBLE
+    private fun showChannels(channels: List<Channel>?) {
+        list.visibility = if (channels.isNullOrEmpty()) View.INVISIBLE else View.VISIBLE
+        swipeRefresh.isRefreshing = false
         adapter.swap(channels)
     }
 

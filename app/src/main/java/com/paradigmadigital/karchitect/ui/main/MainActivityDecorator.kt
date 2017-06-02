@@ -3,7 +3,6 @@ package com.paradigmadigital.karchitect.ui.main
 import android.arch.lifecycle.Observer
 import android.support.design.widget.FloatingActionButton
 import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -45,14 +44,12 @@ constructor(
         }
     }
 
-    private var refreshListener = OnRefreshListener { delegate?.onRefresh() }
-
     fun bind(view: View) {
         ButterKnife.bind(this, view)
         initToolbar()
         list.layoutManager = layoutManager
         list.itemAnimator = DefaultItemAnimator()
-        swipeRefresh.setOnRefreshListener(refreshListener)
+        swipeRefresh.setOnRefreshListener({ delegate?.onRefresh() })
     }
 
     fun dispose() {

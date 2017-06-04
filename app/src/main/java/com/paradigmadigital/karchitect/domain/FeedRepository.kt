@@ -6,6 +6,7 @@ import com.paradigmadigital.karchitect.domain.db.ChannelsDao
 import com.paradigmadigital.karchitect.domain.db.ItemsDao
 import com.paradigmadigital.karchitect.domain.entities.Channel
 import com.paradigmadigital.karchitect.domain.entities.Item
+import com.paradigmadigital.karchitect.domain.entities.Item.Companion.READ
 import com.paradigmadigital.karchitect.domain.entities.ItemCount
 import com.paradigmadigital.karchitect.domain.mappers.ChannelMapper
 import com.paradigmadigital.karchitect.domain.mappers.ItemsMapper
@@ -48,6 +49,11 @@ constructor(
         }
     }
 
+    fun  markAsRead(item: Item) {
+        item.read = READ
+        itemsDao.updateItem(item)
+    }
+
     private fun addSampleChannels() {
         addChannel("http://www.paradigmatecnologico.com/feed/")
         addChannel("http://feed.androidauthority.com/")
@@ -76,6 +82,4 @@ constructor(
             }
         }
     }
-
-
 }

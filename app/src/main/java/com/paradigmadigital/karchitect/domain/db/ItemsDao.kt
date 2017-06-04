@@ -1,10 +1,7 @@
 package com.paradigmadigital.karchitect.domain.db
 
 import android.arch.lifecycle.LiveData
-import android.arch.persistence.room.Dao
-import android.arch.persistence.room.Insert
-import android.arch.persistence.room.OnConflictStrategy
-import android.arch.persistence.room.Query
+import android.arch.persistence.room.*
 import com.paradigmadigital.karchitect.domain.entities.Item
 import com.paradigmadigital.karchitect.domain.entities.ItemCount
 
@@ -19,6 +16,9 @@ abstract class  ItemsDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     abstract fun insert(item: Item)
+
+    @Update
+    abstract fun  updateItem(item: Item)
 
     @Query("SELECT * FROM items where channelKey = :p0")
     abstract fun getAll(channelKey: String): LiveData<List<Item>>

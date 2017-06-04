@@ -1,12 +1,14 @@
 package com.paradigmadigital.karchitect.ui.detail
 
+import com.paradigmadigital.karchitect.domain.FeedRepository
 import com.paradigmadigital.karchitect.domain.entities.Item
 import com.paradigmadigital.karchitect.ui.browser.CustomTabsManager
 import javax.inject.Inject
 
 class DetailActivityPresenter
 @Inject constructor(
-        val browser: CustomTabsManager
+        val browser: CustomTabsManager,
+        val repository: FeedRepository
 ) {
 
     private var decorator: DetailActivityUserInterface? = null
@@ -15,6 +17,7 @@ class DetailActivityPresenter
     private val delegate = object : DetailActivityUserInterface.Delegate {
         override fun onClick(item: Item) {
             browser.showContent(item.link)
+            repository.markAsRead(item)
         }
     }
 

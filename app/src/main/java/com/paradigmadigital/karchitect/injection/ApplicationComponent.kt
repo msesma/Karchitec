@@ -1,6 +1,7 @@
 package com.paradigmadigital.karchitect.injection
 
 import android.content.Context
+import android.content.pm.PackageManager
 import com.paradigmadigital.karchitect.api.ApiModule
 import com.paradigmadigital.karchitect.domain.DomainModule
 import com.paradigmadigital.karchitect.domain.FeedRepository
@@ -27,6 +28,8 @@ interface ApplicationComponent {
 
     //Exposed to sub-graphs
     fun provideContext(): Context
+
+    fun providePackageManager(): PackageManager
 
     fun provideOkHttpClient(): OkHttpClient
 

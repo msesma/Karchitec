@@ -1,17 +1,20 @@
 package com.paradigmadigital.karchitect.ui.detail
 
 import com.paradigmadigital.karchitect.domain.entities.Item
+import com.paradigmadigital.karchitect.ui.browser.CustomTabsManager
 import javax.inject.Inject
 
 class DetailActivityPresenter
-@Inject constructor() {
+@Inject constructor(
+        val browser: CustomTabsManager
+) {
 
     private var decorator: DetailActivityUserInterface? = null
     private lateinit var viewModel: DetailViewModel
 
     private val delegate = object : DetailActivityUserInterface.Delegate {
         override fun onClick(item: Item) {
-            //TODO open WebView with the item link
+            browser.showContent(item.link)
         }
     }
 

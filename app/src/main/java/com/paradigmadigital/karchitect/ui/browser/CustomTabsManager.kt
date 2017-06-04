@@ -1,21 +1,21 @@
 package com.paradigmadigital.karchitect.ui.browser
 
-import android.app.Activity
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
-import android.support.annotation.StringRes
 import android.support.customtabs.CustomTabsCallback
 import android.support.customtabs.CustomTabsClient
 import android.support.customtabs.CustomTabsIntent
 import android.support.v4.content.ContextCompat
 import com.paradigmadigital.karchitect.R
+import com.paradigmadigital.karchitect.platform.BaseActivity
 import javax.inject.Inject
 
 class CustomTabsManager
 @Inject
 constructor(
-        private val activity: Activity,
+        private val activity: BaseActivity,
         private val customTabsHelper: CustomTabsHelper
 ) : CustomTabsCallback(), ServiceConnection.ServiceConnectionCallback {
 
@@ -26,13 +26,12 @@ constructor(
             val builder = CustomTabsIntent.Builder()
             builder.setToolbarColor(ContextCompat.getColor(activity, R.color.colorPrimary))
             builder.setShowTitle(true)
-            //        builder.setCloseButtonIcon(BitmapFactory.decodeResource(activity.getResources(), R.drawable.ic_arrow_back));
-            //        builder.setStartAnimations(activity, R.anim.slide_in_right, R.anim.slide_out_left);
+            builder.setCloseButtonIcon(BitmapFactory.decodeResource(activity.getResources(), R.drawable.ic_arrow_back_white_24dp));
             builder.setExitAnimations(activity, android.R.anim.slide_in_left, android.R.anim.slide_out_right)
             return builder.build()
         }
 
-    fun showContent(url: String, @StringRes title: Int) {
+    fun showContent(url: String) {
         val browser = customTabsHelper.getPackageNameToUse()
         if (browser != null) {
             openCustomTab(browser, url)

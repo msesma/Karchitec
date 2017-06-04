@@ -3,9 +3,12 @@ package com.paradigmadigital.karchitect.ui.browser
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.pm.PackageManager.MATCH_ALL
 import android.net.Uri
+import android.os.Build
 import android.text.TextUtils
 import android.util.Log
+import com.paradigmadigital.karchitect.BuildConfig
 import java.util.*
 import javax.inject.Inject
 
@@ -36,7 +39,8 @@ constructor(
             defaultViewHandlerPackageName = defaultViewHandlerInfo.activityInfo.packageName
         }
 
-        val resolvedActivityList = packageManager.queryIntentActivities(activityIntent, 0)
+        val flags = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MATCH_ALL else 0
+        val resolvedActivityList = packageManager.queryIntentActivities(activityIntent, flags)
         val packagesSupportingCustomTabs = ArrayList<String>()
         for (info in resolvedActivityList) {
             val serviceIntent = Intent()

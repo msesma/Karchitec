@@ -6,6 +6,7 @@ import com.paradigmadigital.karchitect.domain.db.ChannelsDao
 import com.paradigmadigital.karchitect.domain.db.ItemsDao
 import com.paradigmadigital.karchitect.domain.entities.Channel
 import com.paradigmadigital.karchitect.domain.entities.Item
+import com.paradigmadigital.karchitect.domain.entities.ItemCount
 import com.paradigmadigital.karchitect.domain.mappers.ChannelMapper
 import com.paradigmadigital.karchitect.domain.mappers.ItemsMapper
 import okhttp3.OkHttpClient
@@ -34,8 +35,12 @@ constructor(
         return itemsDao.getAll(channelLink)
     }
 
+    fun getUnreadItemCount(): LiveData<List<ItemCount>> {
+        return itemsDao.getUnreadCount()
+    }
+
     fun refreshItems() {
-        val channels = channelsDao.getChannelsSync() ?: emptyList()
+        val channels = channelsDao.getChannelsSync()
         for (channel in channels) {
             refreshItems(channel.linkKey)
         }

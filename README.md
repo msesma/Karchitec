@@ -9,6 +9,7 @@ Pet project for testing several technologies:
 - Google architecture components 
 - Dagger 2 Dependency injection
 - Constraint layout
+- Estetho for Okhttp and db debugging
 - MockWebServer based Unit testing for RxJava (Pending)
 - Espresso tests (Pending)
  

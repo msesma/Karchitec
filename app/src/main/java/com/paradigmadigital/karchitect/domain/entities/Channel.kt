@@ -8,6 +8,10 @@ class Channel(
         @PrimaryKey
         var linkKey: String,
         var title: String,
-        var description: String,
-        var qtty: Int
+        var description: String
+)
+
+class ChannelData(
+        var channel: Channel,
+        var unreadCount: Int
 )

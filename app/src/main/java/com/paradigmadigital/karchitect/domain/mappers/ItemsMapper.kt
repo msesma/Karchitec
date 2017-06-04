@@ -17,7 +17,8 @@ constructor() : Mapper<List<Item>, Feed> {
                             pubDate = feedItem.pubDate ?: "",
                             title = feedItem.title ?: "",
                             link = feedItem.link ?: "",
-                            description = feedItem.description ?: ""
+                            description = feedItem.description ?: "",
+                            read = 0
                     )
             )
         }

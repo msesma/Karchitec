@@ -10,6 +10,7 @@ import butterknife.ButterKnife
 import butterknife.OnClick
 import com.paradigmadigital.karchitect.R
 import com.paradigmadigital.karchitect.domain.entities.Channel
+import com.paradigmadigital.karchitect.domain.entities.ChannelData
 
 class MainViewHolder(
         itemView: ViewGroup
@@ -20,7 +21,7 @@ class MainViewHolder(
     @BindView(R.id.qtty)
     lateinit var qtty: TextView
 
-    lateinit private var channel: Channel
+    lateinit private var channel: ChannelData
     private var clickListener: MainClickListener? = null
 
     private val context: Context
@@ -32,15 +33,15 @@ class MainViewHolder(
         context = itemView.context
     }
 
-    fun bind(channel: Channel, clickListener: MainClickListener?) {
+    fun bind(channel: ChannelData, clickListener: MainClickListener?) {
         this.channel = channel
         this.clickListener = clickListener
         configureView()
     }
 
     private fun configureView() {
-        qtty.text = "${channel.qtty}"
-        desc.text = "${channel.title}: ${channel.description}"
+        qtty.text = "${channel.unreadCount}"
+        desc.text = "${channel.channel.title}: ${channel.channel.description}"
     }
 
     @OnClick(R.id.main_row)

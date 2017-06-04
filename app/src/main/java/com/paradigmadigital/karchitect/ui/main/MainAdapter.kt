@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.paradigmadigital.karchitect.R
 import com.paradigmadigital.karchitect.domain.entities.Channel
+import com.paradigmadigital.karchitect.domain.entities.ChannelData
 
 import javax.inject.Inject
 
@@ -12,7 +13,7 @@ class MainAdapter
 @Inject
 constructor() : RecyclerView.Adapter<MainViewHolder>() {
 
-    private var channels: List<Channel> = listOf()
+    private var channels: List<ChannelData> = listOf()
     private var clickListener: MainClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
@@ -26,7 +27,7 @@ constructor() : RecyclerView.Adapter<MainViewHolder>() {
 
     override fun getItemCount() = channels.size
 
-    fun swap(channels: List<Channel>?) {
+    fun swap(channels: List<ChannelData>?) {
         if (channels != null) {
             this.channels = channels
             notifyDataSetChanged()
@@ -38,6 +39,6 @@ constructor() : RecyclerView.Adapter<MainViewHolder>() {
     }
 
     fun getItemAtPosition(position: Int): Channel {
-        return channels[position]
+        return channels[position].channel
     }
 }

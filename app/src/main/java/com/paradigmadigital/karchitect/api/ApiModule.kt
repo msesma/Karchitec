@@ -1,6 +1,7 @@
 package com.paradigmadigital.karchitect.api
 
 import android.util.Log
+import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.paradigmadigital.karchitect.BuildConfig
 import dagger.Module
 import dagger.Provides
@@ -20,5 +21,6 @@ class ApiModule() {
     @Provides
     fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor) = OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
+            .addNetworkInterceptor(StethoInterceptor())
             .build()
 }

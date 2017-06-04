@@ -11,8 +11,7 @@ constructor() : Mapper<Channel, Feed> {
         return Channel(
                 input.url ?: "",
                 input.channel?.title ?: "",
-                input.channel?.description ?: "",
-                input.channel?.feedItems?.size ?: 0
+                input.channel?.description ?: ""
         )
     }
 }

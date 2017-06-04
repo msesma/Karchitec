@@ -16,6 +16,12 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        debug {
+            storeFile file('../debug.keystore')
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled true
@@ -23,11 +29,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
-//    compileOptions {
-//        sourceCompatibility JavaVersion.VERSION_1_8
-//        targetCompatibility JavaVersion.VERSION_1_8
-//    }
 
     dexOptions {
         maxProcessCount 4
@@ -45,13 +46,15 @@ ext {
     arch = '1.0.0-alpha1'
 
     retrofit = '2.1.0'
-    converter_gson = '2.0.0'
+    converter_xml = '2.0.0'
     okhttp = '3.6.0'
     butterknife = '8.5.1'
     dagger = '2.5'
     picasso = '2.5.2'
     timber = '4.5.1'
     android_chart = 'v3.0.1'
+
+    estetho = '1.5.0'
 
     junit = '4.11'
     robolectric = '3.3'
@@ -71,6 +74,7 @@ dependencies {
 
     compile "com.android.support:design:$support"
     compile "com.android.support:support-annotations:$support"
+    compile "com.android.support:customtabs:$support"
     compile "com.android.support.constraint:constraint-layout:$constraint"
 
     compile "android.arch.persistence.room:runtime:$arch"
@@ -87,11 +91,14 @@ dependencies {
     compile "com.squareup.okhttp3:okhttp:$okhttp"
     compile "com.squareup.okhttp3:logging-interceptor:$okhttp"
     compile "com.squareup.retrofit2:retrofit:$retrofit"
-    compile ('com.squareup.retrofit2:converter-simplexml:2.0.0') {
+    compile ("com.squareup.retrofit2:converter-simplexml:$converter_xml") {
         exclude group: 'xpp3', module: 'xpp3'
         exclude group: 'stax', module: 'stax-api'
         exclude group: 'stax', module: 'stax'
     }
+
+    compile "com.facebook.stetho:stetho:$estetho"
+    compile "com.facebook.stetho:stetho-okhttp3:$estetho"
 
 /*    testCompile "junit:junit:$junit"
     testCompile "org.robolectric:robolectric:$robolectric"

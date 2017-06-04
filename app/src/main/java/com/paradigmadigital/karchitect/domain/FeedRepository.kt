@@ -9,6 +9,7 @@ import com.paradigmadigital.karchitect.domain.entities.Item
 import com.paradigmadigital.karchitect.domain.entities.ItemCount
 import com.paradigmadigital.karchitect.domain.mappers.ChannelMapper
 import com.paradigmadigital.karchitect.domain.mappers.ItemsMapper
+import com.paradigmadigital.karchitect.platform.isNullOrEmpty
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory
@@ -41,9 +42,15 @@ constructor(
 
     fun refreshItems() {
         val channels = channelsDao.getChannelsSync()
+        if (channels.isNullOrEmpty()) addSampleChannels()
         for (channel in channels) {
             refreshItems(channel.linkKey)
         }
+    }
+
+    private fun addSampleChannels() {
+        addChannel("http://www.paradigmatecnologico.com/feed/")
+        addChannel("http://feed.androidauthority.com/")
     }
 
     private fun refreshItems(channelLink: String) {

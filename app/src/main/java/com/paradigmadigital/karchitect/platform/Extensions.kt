@@ -1,7 +1,7 @@
 package com.paradigmadigital.karchitect.platform
 
 
-fun <E : Any, T : Collection<E>> T?.isNullOrEmpty(): Boolean {
+fun <T : Collection<*>> T?.isNullOrEmpty(): Boolean {
     return this == null || this.isEmpty()
 }
 

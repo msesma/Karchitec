@@ -68,6 +68,10 @@ constructor(
         viewModel.channelCount.observe(activity, Observer<List<ItemCount>> { showChannelCounts(it) })
     }
 
+    override fun stopRefresh() {
+        swipeRefresh.isRefreshing = false
+    }
+
     @OnClick(R.id.fab)
     fun onFabClick() {
         dialog.show(R.string.add_channel, R.string.add_channel_text, { delegate?.onAddChannel(it) })
@@ -75,13 +79,14 @@ constructor(
 
     private fun showChannels(channels: List<Channel>?) {
         list.visibility = if (channels.isNullOrEmpty()) View.INVISIBLE else View.VISIBLE
-        swipeRefresh.isRefreshing = false
+        stopRefresh()
         this.channels = channels ?: this.channels
         refreshView()
     }
 
     private fun showChannelCounts(itemCount: List<ItemCount>?) {
         this.itemCount = itemCount ?: this.itemCount
+        stopRefresh()
         refreshView()
     }
 

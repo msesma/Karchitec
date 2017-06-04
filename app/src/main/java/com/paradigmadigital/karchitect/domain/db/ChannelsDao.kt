@@ -11,10 +11,10 @@ import com.paradigmadigital.karchitect.domain.entities.ItemCount
 @Dao
 abstract class ChannelsDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     abstract fun insert(channel: Channel)
 
-    @Query("SELECT * FROM channels")
+    @Query("SELECT * FROM channels ORDER BY rowid")
     abstract fun getChannels(): LiveData<List<Channel>>
 
     @Query("SELECT * FROM channels")

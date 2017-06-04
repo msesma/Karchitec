@@ -19,7 +19,10 @@ constructor(
     private val delegate = object : MainActivityUserInterface.Delegate {
         override fun onAddChannel(channelUrl: String) = repository.addChannel(channelUrl)
 
-        override fun onRefresh() = repository.refreshItems()
+        override fun onRefresh() {
+            repository.refreshItems()
+            decorator?.stopRefresh() //TODO stop cos if nothing changed decorator doesn't know refresh is done. Change this when error control is implemented
+        }
 
         override fun onClick(channel: Channel) = navigator.navigateToDetail(channel)
     }
@@ -28,14 +31,6 @@ constructor(
         this.decorator = decorator
         this.viewModel = viewModel
         this.decorator?.initialize(delegate, viewModel)
-        initApp(viewModel)
-    }
-
-    private fun initApp(viewModel: MainViewModel) {
-        if (viewModel.channels.value.isNullOrEmpty()) {
-            repository.addChannel("http://www.paradigmatecnologico.com/feed/")
-            repository.addChannel("http://feed.androidauthority.com/")
-        }
     }
 
     fun dispose() {

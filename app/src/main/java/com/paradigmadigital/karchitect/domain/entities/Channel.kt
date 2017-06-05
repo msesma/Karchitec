@@ -1,5 +1,6 @@
 package com.paradigmadigital.karchitect.domain.entities
 
+import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 
@@ -11,7 +12,13 @@ data class Channel(
         var description: String
 )
 
-data class ChannelData(
-        var channel: Channel,
-        var unreadCount: Int
+data class ChannelList(
+        @ColumnInfo
+        var linkKey: String,
+        @ColumnInfo
+        var title: String,
+        @ColumnInfo
+        var description: String,
+        @ColumnInfo
+        var count: Int
 )

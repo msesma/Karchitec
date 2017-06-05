@@ -12,9 +12,7 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
 import com.paradigmadigital.karchitect.R
-import com.paradigmadigital.karchitect.domain.entities.Channel
-import com.paradigmadigital.karchitect.domain.entities.ChannelData
-import com.paradigmadigital.karchitect.domain.entities.ItemCount
+import com.paradigmadigital.karchitect.domain.entities.ChannelList
 import com.paradigmadigital.karchitect.platform.BaseActivity
 import com.paradigmadigital.karchitect.platform.isNullOrEmpty
 import com.paradigmadigital.karchitect.ui.TextAlertDialog
@@ -39,8 +37,6 @@ constructor(
     lateinit var fab: FloatingActionButton
 
     private var delegate: MainActivityUserInterface.Delegate? = null
-    private var channels: List<Channel> = emptyList()
-    private var itemCount: List<ItemCount> = emptyList()
 
     private val channelsClickListener = object : MainClickListener {
         override fun onClick(index: Int) {
@@ -64,8 +60,7 @@ constructor(
         this.delegate = delegate
         list.adapter = adapter
         adapter.setClickListener(channelsClickListener)
-        viewModel.channels.observe(activity, Observer<List<Channel>> { showChannels(it) })
-        viewModel.channelCount.observe(activity, Observer<List<ItemCount>> { showChannelCounts(it) })
+        viewModel.channels.observe(activity, Observer<List<ChannelList>> { showChannels(it) })
     }
 
     override fun stopRefresh() {
@@ -77,26 +72,10 @@ constructor(
         dialog.show(R.string.add_channel, R.string.add_channel_text, { delegate?.onAddChannel(it) })
     }
 
-    private fun showChannels(channels: List<Channel>?) {
+    private fun showChannels(channels: List<ChannelList>?) {
         list.visibility = if (channels.isNullOrEmpty()) View.INVISIBLE else View.VISIBLE
         stopRefresh()
-        this.channels = channels ?: this.channels
-        refreshView()
-    }
-
-    private fun showChannelCounts(itemCount: List<ItemCount>?) {
-        this.itemCount = itemCount ?: this.itemCount
-        stopRefresh()
-        refreshView()
-    }
-
-    private fun refreshView() {
-        val channelDataList = mutableListOf<ChannelData>()
-        channels.forEach { channel ->
-            val count = itemCount.firstOrNull { it.channelKey == channel.linkKey }?.count ?: 0
-            channelDataList.add(ChannelData(channel, count))
-        }
-        adapter.swap(channelDataList)
+        adapter.swap(channels)
     }
 
     private fun initToolbar() {

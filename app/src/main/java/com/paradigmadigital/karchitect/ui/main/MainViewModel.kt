@@ -4,8 +4,7 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
 import com.paradigmadigital.karchitect.domain.FeedRepository
-import com.paradigmadigital.karchitect.domain.entities.Channel
-import com.paradigmadigital.karchitect.domain.entities.ItemCount
+import com.paradigmadigital.karchitect.domain.entities.ChannelList
 import com.paradigmadigital.karchitect.platform.AndroidApplication
 import javax.inject.Inject
 
@@ -16,12 +15,10 @@ constructor(
 
     @Inject lateinit var repository: FeedRepository
 
-    val channels: LiveData<List<Channel>>
-    val channelCount: LiveData<List<ItemCount>>
+    val channels: LiveData<List<ChannelList>>
 
     init {
         (app as AndroidApplication).applicationComponent.inject(this)
         channels = repository.getChannels()
-        channelCount = repository.getUnreadItemCount()
     }
 }

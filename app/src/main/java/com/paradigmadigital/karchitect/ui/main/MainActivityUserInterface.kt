@@ -1,6 +1,6 @@
 package com.paradigmadigital.karchitect.ui.main
 
-import com.paradigmadigital.karchitect.domain.entities.Channel
+import com.paradigmadigital.karchitect.domain.entities.ChannelList
 
 interface MainActivityUserInterface {
 
@@ -12,7 +12,7 @@ interface MainActivityUserInterface {
 
         fun onRefresh()
 
-        fun onClick(channel: Channel)
+        fun onClick(channel: ChannelList)
 
         fun onAddChannel(channelUrl: String)
     }

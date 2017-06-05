@@ -4,10 +4,9 @@ import android.arch.lifecycle.LiveData
 import com.paradigmadigital.karchitect.api.services.FeedService
 import com.paradigmadigital.karchitect.domain.db.ChannelsDao
 import com.paradigmadigital.karchitect.domain.db.ItemsDao
-import com.paradigmadigital.karchitect.domain.entities.Channel
+import com.paradigmadigital.karchitect.domain.entities.ChannelList
 import com.paradigmadigital.karchitect.domain.entities.Item
 import com.paradigmadigital.karchitect.domain.entities.Item.Companion.READ
-import com.paradigmadigital.karchitect.domain.entities.ItemCount
 import com.paradigmadigital.karchitect.domain.mappers.ChannelMapper
 import com.paradigmadigital.karchitect.domain.mappers.ItemsMapper
 import com.paradigmadigital.karchitect.platform.isNullOrEmpty
@@ -26,19 +25,15 @@ constructor(
         val itemsMapper: ItemsMapper
 ) {
 
-    fun getChannels(): LiveData<List<Channel>> {
+    fun getChannels(): LiveData<List<ChannelList>> {
         refreshItems()
-        return channelsDao.getChannels()
+        return channelsDao.getChannelList()
     }
 
     fun addChannel(channelLink: String) = refreshItems(channelLink)
 
     fun getItems(channelLink: String): LiveData<List<Item>> {
         return itemsDao.getAll(channelLink)
-    }
-
-    fun getUnreadItemCount(): LiveData<List<ItemCount>> {
-        return itemsDao.getUnreadCount()
     }
 
     fun refreshItems() {

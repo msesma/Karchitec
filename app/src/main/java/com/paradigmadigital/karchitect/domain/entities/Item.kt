@@ -1,6 +1,5 @@
 package com.paradigmadigital.karchitect.domain.entities
 
-import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 
@@ -16,13 +15,5 @@ class Item(
 ) {
     companion object {
         val READ = 1
-        val UNREAD = 0
     }
 }
-
-class ItemCount(
-        @ColumnInfo
-        var count: Int?,
-        @ColumnInfo
-        var channelKey: String?
-)

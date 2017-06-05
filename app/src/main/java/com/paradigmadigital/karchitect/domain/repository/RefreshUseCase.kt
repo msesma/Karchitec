@@ -1,21 +1,17 @@
-package com.paradigmadigital.karchitect.domain
+package com.paradigmadigital.karchitect.domain.repository
 
-import android.arch.lifecycle.LiveData
 import com.paradigmadigital.karchitect.api.services.FeedService
 import com.paradigmadigital.karchitect.domain.db.ChannelsDao
 import com.paradigmadigital.karchitect.domain.db.ItemsDao
-import com.paradigmadigital.karchitect.domain.entities.ChannelUiModel
-import com.paradigmadigital.karchitect.domain.entities.Item
-import com.paradigmadigital.karchitect.domain.entities.Item.Companion.READ
 import com.paradigmadigital.karchitect.domain.mappers.ChannelMapper
 import com.paradigmadigital.karchitect.domain.mappers.ItemsMapper
-import com.paradigmadigital.karchitect.platform.isNullOrEmpty
 import okhttp3.OkHttpClient
-import retrofit2.Retrofit
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory
 import java.util.concurrent.Executor
+import javax.inject.Inject
 
-class FeedRepository
+class RefreshUseCase
+@Inject
 constructor(
         val client: OkHttpClient,
         val itemsDao: ItemsDao,
@@ -24,39 +20,9 @@ constructor(
         val channelMapper: ChannelMapper,
         val itemsMapper: ItemsMapper
 ) {
-
-    fun getChannels(): LiveData<List<ChannelUiModel>> {
-        refreshItems()
-        return channelsDao.getChannelList()
-    }
-
-    fun addChannel(channelLink: String) = refreshItems(channelLink)
-
-    fun getItems(channelLink: String): LiveData<List<Item>> {
-        return itemsDao.getAll(channelLink)
-    }
-
-    fun refreshItems() {
-        val channels = channelsDao.getChannelsSync()
-        if (channels.isNullOrEmpty()) addSampleChannels()
-        for (channel in channels) {
-            refreshItems(channel.linkKey)
-        }
-    }
-
-    fun  markAsRead(item: Item) {
-        item.read = READ
-        itemsDao.updateItem(item)
-    }
-
-    private fun addSampleChannels() {
-        addChannel("http://www.paradigmatecnologico.com/feed/")
-        addChannel("http://feed.androidauthority.com/")
-    }
-
-    private fun refreshItems(channelLink: String) {
+    fun refreshItems(channelLink: String) {
         executor.execute {
-            val feedService = Retrofit.Builder()
+            val feedService = retrofit2.Retrofit.Builder()
                     .client(client)
                     .addConverterFactory(SimpleXmlConverterFactory.create())
                     .baseUrl(channelLink)

@@ -13,8 +13,6 @@ import com.paradigmadigital.karchitect.domain.entities.Item
 @TypeConverters(DateConverter::class)
 abstract class FeedDb : RoomDatabase() {
 
-    internal val DATABASE_NAME = "feeddb"
-
     abstract fun channelsDao(): ChannelsDao
 
     abstract fun itemsDao(): ItemsDao

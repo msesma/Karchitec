@@ -13,7 +13,7 @@ constructor(
         val itemsDao: ItemsDao,
         val channelsDao: ChannelsDao,
         val useCase: RefreshUseCase
-        ) {
+) {
 
     fun getChannels(): LiveData<List<ChannelUiModel>> {
         refreshItems()
@@ -27,10 +27,10 @@ constructor(
     }
 
     fun refreshItems() {
-        val channels = channelsDao.getChannelsSync()
-        if (channels.isNullOrEmpty()) addSampleChannels()
-        for (channel in channels) {
-            useCase.refreshItems(channel.linkKey)
+        var links = channelsDao.getChannelsSync().map { channel -> channel.linkKey }
+        if (links.isNullOrEmpty()) links = addSampleChannels()
+        for (link in links) {
+            useCase.refreshItems(link)
         }
     }
 
@@ -39,8 +39,10 @@ constructor(
         itemsDao.updateItem(item)
     }
 
-    private fun addSampleChannels() {
-        addChannel("http://www.paradigmatecnologico.com/feed/")
-        addChannel("http://feed.androidauthority.com/")
+    private fun addSampleChannels(): List<String> {
+        val links = mutableListOf<String>()
+        links.add("http://www.paradigmatecnologico.com/feed/")
+        links.add("http://feed.androidauthority.com/")
+        return links
     }
 }

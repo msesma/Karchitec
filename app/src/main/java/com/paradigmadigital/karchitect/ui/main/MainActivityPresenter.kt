@@ -1,7 +1,7 @@
 package com.paradigmadigital.karchitect.ui.main
 
 import com.paradigmadigital.karchitect.domain.FeedRepository
-import com.paradigmadigital.karchitect.domain.entities.ChannelList
+import com.paradigmadigital.karchitect.domain.entities.ChannelUiModel
 import com.paradigmadigital.karchitect.navigation.Navigator
 import javax.inject.Inject
 
@@ -23,7 +23,7 @@ constructor(
             decorator?.stopRefresh() //TODO stop cos if nothing changed decorator doesn't know refresh is done. Change this when error control is implemented
         }
 
-        override fun onClick(channel: ChannelList) = navigator.navigateToDetail(channel)
+        override fun onClick(channel: ChannelUiModel) = navigator.navigateToDetail(channel)
     }
 
     fun initialize(decorator: MainActivityUserInterface, viewModel: MainViewModel) {

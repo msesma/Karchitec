@@ -6,7 +6,7 @@ import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
 import com.paradigmadigital.karchitect.domain.entities.Channel
-import com.paradigmadigital.karchitect.domain.entities.ChannelList
+import com.paradigmadigital.karchitect.domain.entities.ChannelUiModel
 
 @Dao
 abstract class ChannelsDao {
@@ -20,5 +20,5 @@ abstract class ChannelsDao {
     @Query("SELECT linkKey, title, description, count FROM channels " +
             "LEFT JOIN (SELECT count(*) AS count, channelKey FROM items WHERE read = 0 GROUP BY channelKey) " +
             "ON linkKey = channelKey")
-    abstract fun getChannelList(): LiveData<List<ChannelList>>
+    abstract fun getChannelList(): LiveData<List<ChannelUiModel>>
 }

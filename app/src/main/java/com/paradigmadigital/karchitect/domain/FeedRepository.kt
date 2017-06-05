@@ -4,7 +4,7 @@ import android.arch.lifecycle.LiveData
 import com.paradigmadigital.karchitect.api.services.FeedService
 import com.paradigmadigital.karchitect.domain.db.ChannelsDao
 import com.paradigmadigital.karchitect.domain.db.ItemsDao
-import com.paradigmadigital.karchitect.domain.entities.ChannelList
+import com.paradigmadigital.karchitect.domain.entities.ChannelUiModel
 import com.paradigmadigital.karchitect.domain.entities.Item
 import com.paradigmadigital.karchitect.domain.entities.Item.Companion.READ
 import com.paradigmadigital.karchitect.domain.mappers.ChannelMapper
@@ -25,7 +25,7 @@ constructor(
         val itemsMapper: ItemsMapper
 ) {
 
-    fun getChannels(): LiveData<List<ChannelList>> {
+    fun getChannels(): LiveData<List<ChannelUiModel>> {
         refreshItems()
         return channelsDao.getChannelList()
     }

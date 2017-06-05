@@ -4,7 +4,7 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
 import com.paradigmadigital.karchitect.domain.FeedRepository
-import com.paradigmadigital.karchitect.domain.entities.ChannelList
+import com.paradigmadigital.karchitect.domain.entities.ChannelUiModel
 import com.paradigmadigital.karchitect.platform.AndroidApplication
 import javax.inject.Inject
 
@@ -15,7 +15,7 @@ constructor(
 
     @Inject lateinit var repository: FeedRepository
 
-    val channels: LiveData<List<ChannelList>>
+    val channels: LiveData<List<ChannelUiModel>>
 
     init {
         (app as AndroidApplication).applicationComponent.inject(this)

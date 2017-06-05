@@ -12,7 +12,7 @@ data class Channel(
         var description: String
 )
 
-data class ChannelList(
+data class ChannelUiModel(
         @ColumnInfo
         var linkKey: String,
         @ColumnInfo

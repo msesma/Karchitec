@@ -4,14 +4,14 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.paradigmadigital.karchitect.R
-import com.paradigmadigital.karchitect.domain.entities.ChannelList
+import com.paradigmadigital.karchitect.domain.entities.ChannelUiModel
 import javax.inject.Inject
 
 class MainAdapter
 @Inject
 constructor() : RecyclerView.Adapter<MainViewHolder>() {
 
-    private var channels: List<ChannelList> = listOf()
+    private var channels: List<ChannelUiModel> = listOf()
     private var clickListener: MainClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
@@ -25,7 +25,7 @@ constructor() : RecyclerView.Adapter<MainViewHolder>() {
 
     override fun getItemCount() = channels.size
 
-    fun swap(channels: List<ChannelList>?) {
+    fun swap(channels: List<ChannelUiModel>?) {
         if (channels != null) {
             this.channels = channels
             notifyDataSetChanged()
@@ -36,7 +36,7 @@ constructor() : RecyclerView.Adapter<MainViewHolder>() {
         this.clickListener = forecastClickListener
     }
 
-    fun getItemAtPosition(position: Int): ChannelList {
+    fun getItemAtPosition(position: Int): ChannelUiModel {
         return channels[position]
     }
 }

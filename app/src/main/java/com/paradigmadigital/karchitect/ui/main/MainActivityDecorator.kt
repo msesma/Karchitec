@@ -12,7 +12,7 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
 import com.paradigmadigital.karchitect.R
-import com.paradigmadigital.karchitect.domain.entities.ChannelList
+import com.paradigmadigital.karchitect.domain.entities.ChannelUiModel
 import com.paradigmadigital.karchitect.platform.BaseActivity
 import com.paradigmadigital.karchitect.platform.isNullOrEmpty
 import com.paradigmadigital.karchitect.ui.TextAlertDialog
@@ -60,7 +60,7 @@ constructor(
         this.delegate = delegate
         list.adapter = adapter
         adapter.setClickListener(channelsClickListener)
-        viewModel.channels.observe(activity, Observer<List<ChannelList>> { showChannels(it) })
+        viewModel.channels.observe(activity, Observer<List<ChannelUiModel>> { showChannels(it) })
     }
 
     override fun stopRefresh() {
@@ -72,7 +72,7 @@ constructor(
         dialog.show(R.string.add_channel, R.string.add_channel_text, { delegate?.onAddChannel(it) })
     }
 
-    private fun showChannels(channels: List<ChannelList>?) {
+    private fun showChannels(channels: List<ChannelUiModel>?) {
         list.visibility = if (channels.isNullOrEmpty()) View.INVISIBLE else View.VISIBLE
         stopRefresh()
         adapter.swap(channels)

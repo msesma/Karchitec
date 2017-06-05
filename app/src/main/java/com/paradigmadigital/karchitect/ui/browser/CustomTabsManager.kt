@@ -9,7 +9,7 @@ import android.support.customtabs.CustomTabsClient
 import android.support.customtabs.CustomTabsIntent
 import android.support.v4.content.ContextCompat
 import com.paradigmadigital.karchitect.R
-import com.paradigmadigital.karchitect.platform.BaseActivity
+import com.paradigmadigital.karchitect.ui.BaseActivity
 import javax.inject.Inject
 
 class CustomTabsManager

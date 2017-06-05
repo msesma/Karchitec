@@ -10,7 +10,7 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import com.paradigmadigital.karchitect.R
 import com.paradigmadigital.karchitect.domain.entities.Item
-import com.paradigmadigital.karchitect.platform.BaseActivity
+import com.paradigmadigital.karchitect.ui.BaseActivity
 import javax.inject.Inject
 
 class DetailActivityDecorator

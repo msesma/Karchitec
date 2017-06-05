@@ -6,4 +6,8 @@
     <string name="cancel">CANCEL</string>
     <string name="add_channel">Add RSS feed</string>
     <string name="add_channel_text">Enter the RSS feed URL</string>
+    <string name="net_error">Network error</string>
+    <string name="url_error">Invalid url</string>
+    <string name="feed_error">Not RSS content</string>
+    <string name="unknown_error">Unknown error</string>
 </resources>

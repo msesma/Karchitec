@@ -21,5 +21,4 @@ I've extracted the view to a decorator class in order to maintain the activities
 
 
 #Pending work:
-- Connectivity and error management. I think the way Google explains in the architecture documentation can be improved thanks to Kotlin functional capabilities.
 - Test: Expreso and JUnit

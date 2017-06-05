@@ -1,4 +1,4 @@
-package com.paradigmadigital.karchitect.domain.repository
+package com.paradigmadigital.karchitect.repository
 
 import android.arch.lifecycle.LiveData
 import com.paradigmadigital.karchitect.domain.db.ChannelsDao
@@ -12,7 +12,8 @@ class FeedRepository
 constructor(
         val itemsDao: ItemsDao,
         val channelsDao: ChannelsDao,
-        val useCase: RefreshUseCase
+        val useCase: RefreshUseCase,
+        val errorData: ErrorLiveData
 ) {
 
     fun getChannels(): LiveData<List<ChannelUiModel>> {
@@ -20,7 +21,7 @@ constructor(
         return channelsDao.getChannelList()
     }
 
-    fun addChannel(channelLink: String) = useCase.refreshItems(channelLink)
+    fun addChannel(channelLink: String) = useCase.refreshItems(channelLink, { errorData.setNetworkError(it) })
 
     fun getItems(channelLink: String): LiveData<List<Item>> {
         return itemsDao.getAll(channelLink)
@@ -30,13 +31,17 @@ constructor(
         var links = channelsDao.getChannelsSync().map { channel -> channel.linkKey }
         if (links.isNullOrEmpty()) links = addSampleChannels()
         for (link in links) {
-            useCase.refreshItems(link)
+            useCase.refreshItems(link, { errorData.setNetworkError(it) })
         }
     }
 
     fun markAsRead(item: Item) {
         item.read = READ
         itemsDao.updateItem(item)
+    }
+
+    fun getErrors(): LiveData<NetworkError> {
+        return errorData
     }
 
     private fun addSampleChannels(): List<String> {

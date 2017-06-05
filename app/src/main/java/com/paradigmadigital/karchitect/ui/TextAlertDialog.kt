@@ -6,16 +6,15 @@ import android.support.v7.app.AlertDialog
 import android.text.InputType
 import android.widget.EditText
 import com.paradigmadigital.karchitect.R
+import com.paradigmadigital.karchitect.platform.Callback
 import javax.inject.Inject
-
-typealias Callback = (String) -> Unit
 
 class TextAlertDialog
 @Inject
 constructor(
         private val activity: Activity
 ) {
-    fun show(@StringRes title: Int, @StringRes text: Int, callback: Callback) {
+    fun show(@StringRes title: Int, @StringRes text: Int, callback: Callback<String>) {
         val builder = AlertDialog.Builder(activity)
         builder.setTitle(title)
         builder.setMessage(text)

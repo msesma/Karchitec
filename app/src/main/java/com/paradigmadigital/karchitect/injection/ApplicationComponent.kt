@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import com.paradigmadigital.karchitect.api.ApiModule
 import com.paradigmadigital.karchitect.domain.DomainModule
-import com.paradigmadigital.karchitect.domain.repository.FeedRepository
+import com.paradigmadigital.karchitect.repository.FeedRepository
 import com.paradigmadigital.karchitect.domain.db.ChannelsDao
 import com.paradigmadigital.karchitect.domain.db.ItemsDao
 import com.paradigmadigital.karchitect.platform.ApplicationModule

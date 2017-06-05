@@ -1,7 +1,7 @@
 package com.paradigmadigital.karchitect.ui.main
 
 import android.arch.lifecycle.ViewModelProviders
-import com.paradigmadigital.karchitect.platform.BaseActivity
+import com.paradigmadigital.karchitect.ui.BaseActivity
 
 class MainActivity : BaseActivity() {
 

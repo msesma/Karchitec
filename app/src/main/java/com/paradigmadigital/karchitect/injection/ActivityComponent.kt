@@ -1,7 +1,7 @@
 package com.paradigmadigital.karchitect.injection
 
 import com.paradigmadigital.karchitect.platform.ActivityModule
-import com.paradigmadigital.karchitect.platform.BaseActivity
+import com.paradigmadigital.karchitect.ui.BaseActivity
 import com.paradigmadigital.karchitect.ui.detail.DetailActivity
 import com.paradigmadigital.karchitect.ui.main.MainActivity
 import dagger.Component

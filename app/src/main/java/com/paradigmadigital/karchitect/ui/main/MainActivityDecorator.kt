@@ -8,13 +8,16 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
 import android.view.View
+import android.widget.Toast
 import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
 import com.paradigmadigital.karchitect.R
 import com.paradigmadigital.karchitect.domain.entities.ChannelUiModel
-import com.paradigmadigital.karchitect.platform.BaseActivity
 import com.paradigmadigital.karchitect.platform.isNullOrEmpty
+import com.paradigmadigital.karchitect.repository.NetworkError
+import com.paradigmadigital.karchitect.repository.NetworkError.*
+import com.paradigmadigital.karchitect.ui.BaseActivity
 import com.paradigmadigital.karchitect.ui.TextAlertDialog
 import javax.inject.Inject
 
@@ -61,6 +64,7 @@ constructor(
         list.adapter = adapter
         adapter.setClickListener(channelsClickListener)
         viewModel.channels.observe(activity, Observer<List<ChannelUiModel>> { showChannels(it) })
+        viewModel.errors.observe(activity, Observer<NetworkError> { showErrors(it) })
     }
 
     override fun stopRefresh() {
@@ -76,6 +80,16 @@ constructor(
         list.visibility = if (channels.isNullOrEmpty()) View.INVISIBLE else View.VISIBLE
         stopRefresh()
         adapter.swap(channels)
+    }
+
+    private fun showErrors(error: NetworkError?) {
+        if (error == null) return
+        when (error) {
+            DISCONNECTED -> Toast.makeText(activity, R.string.net_error, Toast.LENGTH_SHORT).show()
+            BAD_URL -> Toast.makeText(activity, R.string.url_error, Toast.LENGTH_SHORT).show()
+            NOT_A_FEED -> Toast.makeText(activity, R.string.feed_error, Toast.LENGTH_SHORT).show()
+            UNKNOWN -> Toast.makeText(activity, R.string.unknown_error, Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun initToolbar() {

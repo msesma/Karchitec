@@ -3,6 +3,7 @@ package com.paradigmadigital.karchitect.platform
 import android.content.Context
 import android.support.v7.widget.LinearLayoutManager
 import com.paradigmadigital.karchitect.injection.PerActivity
+import com.paradigmadigital.karchitect.ui.BaseActivity
 import com.paradigmadigital.karchitect.ui.TextAlertDialog
 import dagger.Module
 import dagger.Provides

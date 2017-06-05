@@ -1,6 +1,6 @@
 package com.paradigmadigital.karchitect.ui.detail
 
-import com.paradigmadigital.karchitect.domain.repository.FeedRepository
+import com.paradigmadigital.karchitect.repository.FeedRepository
 import com.paradigmadigital.karchitect.domain.entities.Item
 import com.paradigmadigital.karchitect.ui.browser.CustomTabsManager
 import javax.inject.Inject

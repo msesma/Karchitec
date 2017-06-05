@@ -5,8 +5,9 @@ import android.content.Context
 import com.paradigmadigital.karchitect.domain.db.ChannelsDao
 import com.paradigmadigital.karchitect.domain.db.FeedDb
 import com.paradigmadigital.karchitect.domain.db.ItemsDao
-import com.paradigmadigital.karchitect.domain.repository.FeedRepository
-import com.paradigmadigital.karchitect.domain.repository.RefreshUseCase
+import com.paradigmadigital.karchitect.repository.ErrorLiveData
+import com.paradigmadigital.karchitect.repository.FeedRepository
+import com.paradigmadigital.karchitect.repository.RefreshUseCase
 import dagger.Module
 import dagger.Provides
 import java.util.concurrent.Executor
@@ -46,7 +47,8 @@ class DomainModule() {
     @Provides
     fun provideRepository(itemsDao: ItemsDao,
                           channelsDao: ChannelsDao,
-                          refreshUseCase: RefreshUseCase): FeedRepository {
-        return FeedRepository(itemsDao, channelsDao, refreshUseCase)
+                          refreshUseCase: RefreshUseCase,
+                          errorData: ErrorLiveData): FeedRepository {
+        return FeedRepository(itemsDao, channelsDao, refreshUseCase, errorData)
     }
 }

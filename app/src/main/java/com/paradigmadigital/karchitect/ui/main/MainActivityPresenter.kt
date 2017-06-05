@@ -1,6 +1,6 @@
 package com.paradigmadigital.karchitect.ui.main
 
-import com.paradigmadigital.karchitect.domain.repository.FeedRepository
+import com.paradigmadigital.karchitect.repository.FeedRepository
 import com.paradigmadigital.karchitect.domain.entities.ChannelUiModel
 import com.paradigmadigital.karchitect.navigation.Navigator
 import javax.inject.Inject

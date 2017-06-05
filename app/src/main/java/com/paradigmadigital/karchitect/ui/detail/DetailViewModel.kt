@@ -3,7 +3,7 @@ package com.paradigmadigital.karchitect.ui.detail
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
-import com.paradigmadigital.karchitect.domain.repository.FeedRepository
+import com.paradigmadigital.karchitect.repository.FeedRepository
 import com.paradigmadigital.karchitect.domain.entities.Item
 import com.paradigmadigital.karchitect.platform.AndroidApplication
 import javax.inject.Inject

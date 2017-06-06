@@ -34,8 +34,4 @@ constructor(
         data.value = listOf(channelUiModel)
         return data
     }
-
-    fun getErrors(): LiveData<NetworkError> {
-        return errorData
-    }
 }

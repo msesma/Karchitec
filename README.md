@@ -29,3 +29,7 @@ This approach is simple and effective, keeping the responsibilities separated. D
 Creating a mock repository class that returns mock MutableLiveData with controlled data is enough to easily test anything we want on the UI. We coud even test errors mocking also the network error LiveData. 
 
 I've left there the code for IdLingResource although it is not extrictly necessary using a fake Repository. With real repositories we must wait until the activity is iddle to ensure the data has arrived and the recyclerView is rendered.
+
+## JUnit tests
+Webservice and mappers (RefreshUseCase) are tested using MockWebServer and a TestExecutor.
+

@@ -100,7 +100,7 @@ dependencies {
     compile "com.facebook.stetho:stetho:$estetho"
     compile "com.facebook.stetho:stetho-okhttp3:$estetho"
 
-/*    testCompile "junit:junit:$junit"
+    testCompile "junit:junit:$junit"
     testCompile "org.robolectric:robolectric:$robolectric"
     testCompile("com.squareup.assertj:assertj-android:$assertj") {
         exclude module: 'support-annotations'
@@ -124,5 +124,5 @@ dependencies {
         exclude module: 'recyclerview-v7'
         exclude module: 'support-annotations'
         exclude module: 'design'
-    }*/
+    }
 }

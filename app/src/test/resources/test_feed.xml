@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:atom="http://www.w3.org/2005/Atom"
+    xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+    version="2.0"
+>
+    <channel>
+        <title>Paradigma</title>
+        <atom:link href="https://www.paradigmadigital.com/feed/"
+            rel="self"
+            type="application/rss+xml" />
+        <link>https://www.paradigmadigital.com</link>
+        <description>Transformación Digital</description>
+        <lastBuildDate>Mon, 05 Jun 2017 14:55:09 +0000</lastBuildDate>
+        <language>es-ES</language>
+        <sy:updatePeriod>hourly</sy:updatePeriod>
+        <sy:updateFrequency>1</sy:updateFrequency>
+        <generator>https://wordpress.org/?v=4.7.5</generator>
+        <item>
+            <title>8 razones por las que tus desarrollos están más seguros en Cloud</title>
+            <link>https://www.paradigmadigital.com/techbiz/8-razones-las-tus-desarrollos-estan-mas-seguros-cloud/</link>
+            <comments>
+                https://www.paradigmadigital.com/techbiz/8-razones-las-tus-desarrollos-estan-mas-seguros-cloud/#respond
+            </comments>
+            <pubDate>Mon, 05 Jun 2017 08:13:35 +0000</pubDate>
+            <dc:creator><![CDATA[Juan María Fiz]]></dc:creator>
+            <category><![CDATA[Tecnología para Negocio]]></category>
+            <category><![CDATA[Cloud]]></category>
+
+            <guid isPermaLink="false">https://www.paradigmadigital.com/?p=8589</guid>
+            <description>Descrition</description>
+        </item>
+    </channel>
+</rss>

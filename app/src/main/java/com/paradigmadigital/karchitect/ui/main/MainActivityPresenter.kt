@@ -1,8 +1,8 @@
 package com.paradigmadigital.karchitect.ui.main
 
-import com.paradigmadigital.karchitect.repository.FeedRepository
 import com.paradigmadigital.karchitect.domain.entities.ChannelUiModel
 import com.paradigmadigital.karchitect.navigation.Navigator
+import com.paradigmadigital.karchitect.repository.FeedRepository
 import javax.inject.Inject
 
 class MainActivityPresenter
@@ -18,10 +18,7 @@ constructor(
     private val delegate = object : MainActivityUserInterface.Delegate {
         override fun onAddChannel(channelUrl: String) = repository.addChannel(channelUrl)
 
-        override fun onRefresh() {
-            repository.refreshItems()
-            decorator?.stopRefresh() //TODO stop cos if nothing changed decorator doesn't know refresh is done. Change this when error control is implemented
-        }
+        override fun onRefresh() = repository.refreshItems()
 
         override fun onClick(channel: ChannelUiModel) = navigator.navigateToDetail(channel)
     }

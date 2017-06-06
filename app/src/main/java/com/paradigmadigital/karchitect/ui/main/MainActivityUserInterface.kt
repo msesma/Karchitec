@@ -6,8 +6,6 @@ interface MainActivityUserInterface {
 
     fun initialize(delegate: Delegate, viewModel: MainViewModel)
 
-    fun stopRefresh()
-
     interface Delegate {
 
         fun onRefresh()

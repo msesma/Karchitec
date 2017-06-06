@@ -1,6 +1,7 @@
 package com.paradigmadigital.karchitect.ui.main
 
 import android.arch.lifecycle.Observer
+import android.support.annotation.StringRes
 import android.support.design.widget.FloatingActionButton
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.DefaultItemAnimator
@@ -63,12 +64,9 @@ constructor(
         this.delegate = delegate
         list.adapter = adapter
         adapter.setClickListener(channelsClickListener)
+
         viewModel.channels.observe(activity, Observer<List<ChannelUiModel>> { showChannels(it) })
         viewModel.errors.observe(activity, Observer<NetworkError> { showErrors(it) })
-    }
-
-    override fun stopRefresh() {
-        swipeRefresh.isRefreshing = false
     }
 
     @OnClick(R.id.fab)
@@ -83,12 +81,14 @@ constructor(
     }
 
     private fun showErrors(error: NetworkError?) {
+        stopRefresh()
         if (error == null) return
         when (error) {
-            DISCONNECTED -> Toast.makeText(activity, R.string.net_error, Toast.LENGTH_SHORT).show()
-            BAD_URL -> Toast.makeText(activity, R.string.url_error, Toast.LENGTH_SHORT).show()
-            NOT_A_FEED -> Toast.makeText(activity, R.string.feed_error, Toast.LENGTH_SHORT).show()
-            UNKNOWN -> Toast.makeText(activity, R.string.unknown_error, Toast.LENGTH_SHORT).show()
+            SUCCESS -> {}
+            DISCONNECTED -> showToast(R.string.net_error)
+            BAD_URL -> showToast(R.string.url_error)
+            NOT_A_FEED -> showToast(R.string.feed_error)
+            UNKNOWN -> showToast(R.string.unknown_error)
         }
     }
 
@@ -97,5 +97,11 @@ constructor(
         val actionBar = activity.supportActionBar
         actionBar?.setDisplayShowTitleEnabled(true)
         actionBar?.setIcon(R.mipmap.ic_launcher)
+    }
+
+    private fun showToast(@StringRes text: Int) = Toast.makeText(activity, text, Toast.LENGTH_SHORT).show()
+
+    private fun stopRefresh() {
+        swipeRefresh.isRefreshing = false
     }
 }

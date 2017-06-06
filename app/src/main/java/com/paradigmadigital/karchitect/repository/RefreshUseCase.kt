@@ -41,6 +41,7 @@ constructor(
 
                 channelsDao.insert(channel)
                 itemsDao.insert(items)
+                callback(NetworkError.SUCCESS)
             } catch (e: Throwable) {
                 when (e) {
                     is UnknownHostException -> callback(NetworkError.DISCONNECTED)

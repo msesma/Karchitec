@@ -33,3 +33,4 @@ I've left there the code for IdLingResource although it is not extrictly necessa
 ## JUnit tests
 Webservice and mappers (RefreshUseCase) are tested using MockWebServer and a TestExecutor.
 
+![Alt text](./karchitec.png?raw=true "Architecture")

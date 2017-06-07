@@ -1,7 +1,5 @@
 package com.paradigmadigital.karchitect.ui.main
 
-import android.content.Context
-import android.content.res.Resources
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import android.widget.TextView
@@ -10,6 +8,7 @@ import butterknife.ButterKnife
 import butterknife.OnClick
 import com.paradigmadigital.karchitect.R
 import com.paradigmadigital.karchitect.domain.entities.ChannelUiModel
+import com.paradigmadigital.karchitect.platform.Callback
 
 class MainViewHolder(
         itemView: ViewGroup
@@ -20,19 +19,14 @@ class MainViewHolder(
     @BindView(R.id.qtty)
     lateinit var qtty: TextView
 
-    lateinit private var channel: ChannelUiModel
-    private var clickListener: MainClickListener? = null
-
-    private val context: Context
-    private val resources: Resources
+    private lateinit var channel: ChannelUiModel
+    private var clickListener: Callback<Int>? = null
 
     init {
         ButterKnife.bind(this, itemView)
-        resources = itemView.resources
-        context = itemView.context
     }
 
-    fun bind(channel: ChannelUiModel, clickListener: MainClickListener?) {
+    fun bind(channel: ChannelUiModel, clickListener: Callback<Int>?) {
         this.channel = channel
         this.clickListener = clickListener
         configureView()
@@ -45,6 +39,7 @@ class MainViewHolder(
 
     @OnClick(R.id.main_row)
     internal fun onRowClick() {
-        clickListener?.onClick(adapterPosition)
+        clickListener?.invoke(adapterPosition)
     }
+
 }

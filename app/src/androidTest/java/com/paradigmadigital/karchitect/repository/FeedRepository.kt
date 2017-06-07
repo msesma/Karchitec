@@ -28,10 +28,15 @@ constructor(
         return data
     }
 
-
     fun getChannels(): LiveData<List<ChannelUiModel>> {
         val data = MutableLiveData<List<ChannelUiModel>>()
         data.value = listOf(channelUiModel)
+        return data
+    }
+
+    fun getErrors(): LiveData<NetworkError> {
+        val data = MutableLiveData<NetworkError>()
+        data.value = NetworkError.SUCCESS
         return data
     }
 }

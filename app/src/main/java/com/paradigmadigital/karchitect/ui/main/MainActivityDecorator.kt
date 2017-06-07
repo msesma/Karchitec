@@ -42,12 +42,6 @@ constructor(
 
     private var delegate: MainActivityUserInterface.Delegate? = null
 
-    private val channelsClickListener = object : MainClickListener {
-        override fun onClick(index: Int) {
-            delegate?.onClick(adapter.getItemAtPosition(index))
-        }
-    }
-
     fun bind(view: View) {
         ButterKnife.bind(this, view)
         initToolbar()
@@ -63,16 +57,14 @@ constructor(
     override fun initialize(delegate: MainActivityUserInterface.Delegate, viewModel: MainViewModel) {
         this.delegate = delegate
         list.adapter = adapter
-        adapter.setClickListener(channelsClickListener)
+        adapter.setClickListener({ delegate.onClick(adapter.getItemAtPosition(it)) })
 
         viewModel.channels.observe(activity, Observer<List<ChannelUiModel>> { showChannels(it) })
         viewModel.errors.observe(activity, Observer<NetworkError> { showErrors(it) })
     }
 
     @OnClick(R.id.fab)
-    fun onFabClick() {
-        dialog.show(R.string.add_channel, R.string.add_channel_text, { delegate?.onAddChannel(it) })
-    }
+    fun onFabClick() = dialog.show(R.string.add_channel, R.string.add_channel_text, { delegate?.onAddChannel(it) })
 
     private fun showChannels(channels: List<ChannelUiModel>?) {
         list.visibility = if (channels.isNullOrEmpty()) View.INVISIBLE else View.VISIBLE

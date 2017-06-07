@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.paradigmadigital.karchitect.R
 import com.paradigmadigital.karchitect.domain.entities.ChannelUiModel
+import com.paradigmadigital.karchitect.platform.Callback
 import javax.inject.Inject
 
 class MainAdapter
@@ -12,7 +13,7 @@ class MainAdapter
 constructor() : RecyclerView.Adapter<MainViewHolder>() {
 
     private var channels: List<ChannelUiModel> = listOf()
-    private var clickListener: MainClickListener? = null
+    private var clickListener: Callback<Int>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -20,23 +21,20 @@ constructor() : RecyclerView.Adapter<MainViewHolder>() {
         return MainViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: MainViewHolder, position: Int) =
-            holder.bind(channels[position], clickListener)
+    override fun onBindViewHolder(holder: MainViewHolder, position: Int) = holder.bind(channels[position], clickListener)
 
     override fun getItemCount() = channels.size
 
     fun swap(channels: List<ChannelUiModel>?) {
-        if (channels != null) {
-            this.channels = channels
+        channels?.let {
+            this.channels = it
             notifyDataSetChanged()
         }
     }
 
-    fun setClickListener(forecastClickListener: MainClickListener) {
-        this.clickListener = forecastClickListener
+    fun setClickListener(clickListener: Callback<Int>) {
+        this.clickListener = clickListener
     }
 
-    fun getItemAtPosition(position: Int): ChannelUiModel {
-        return channels[position]
-    }
+    fun getItemAtPosition(position: Int): ChannelUiModel = channels[position]
 }

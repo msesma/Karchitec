@@ -8,7 +8,7 @@ import com.paradigmadigital.karchitect.domain.entities.Channel
 import com.paradigmadigital.karchitect.domain.entities.Item
 import com.paradigmadigital.karchitect.domain.mappers.ChannelMapper
 import com.paradigmadigital.karchitect.domain.mappers.ItemsMapper
-import com.paradigmadigital.paraguas.MockWebServerTestBase
+import com.paradigmadigital.karchitect.MockWebServerTestBase
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
 import org.junit.Test

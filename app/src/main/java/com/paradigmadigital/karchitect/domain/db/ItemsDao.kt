@@ -5,7 +5,7 @@ import android.arch.persistence.room.*
 import com.paradigmadigital.karchitect.domain.entities.Item
 
 @Dao
-abstract class  ItemsDao {
+abstract class ItemsDao {
 
     fun insert(items: List<Item>) {
         for (item in items) {
@@ -17,7 +17,7 @@ abstract class  ItemsDao {
     abstract fun insert(item: Item)
 
     @Update
-    abstract fun  updateItem(item: Item)
+    abstract fun updateItem(item: Item)
 
     @Query("SELECT * FROM items WHERE channelKey = :p0 ORDER BY pubDate DESC")
     abstract fun getAll(channelKey: String): LiveData<List<Item>>

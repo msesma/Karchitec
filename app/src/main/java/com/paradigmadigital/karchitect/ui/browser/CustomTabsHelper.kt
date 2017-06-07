@@ -8,7 +8,7 @@ import android.net.Uri
 import android.os.Build
 import android.text.TextUtils
 import android.util.Log
-import com.paradigmadigital.karchitect.BuildConfig
+import com.paradigmadigital.karchitect.platform.isNullOrEmpty
 import java.util.*
 import javax.inject.Inject
 
@@ -35,9 +35,7 @@ constructor(
         val activityIntent = Intent(Intent.ACTION_VIEW, Uri.parse("http://www.paradigmadigital.com"))
         val defaultViewHandlerInfo = packageManager.resolveActivity(activityIntent, 0)
         var defaultViewHandlerPackageName: String? = null
-        if (defaultViewHandlerInfo != null) {
-            defaultViewHandlerPackageName = defaultViewHandlerInfo.activityInfo.packageName
-        }
+        defaultViewHandlerInfo?.let { defaultViewHandlerPackageName = it.activityInfo.packageName }
 
         val flags = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MATCH_ALL else 0
         val resolvedActivityList = packageManager.queryIntentActivities(activityIntent, flags)
@@ -71,7 +69,7 @@ constructor(
             val handlers = pm.queryIntentActivities(
                     intent,
                     PackageManager.GET_RESOLVED_FILTER)
-            if (handlers == null || handlers.size == 0) return false
+            if (handlers.isNullOrEmpty()) return false
             for (resolveInfo in handlers) {
                 val filter = resolveInfo.filter ?: continue
                 if (filter.countDataAuthorities() == 0 || filter.countDataPaths() == 0) continue

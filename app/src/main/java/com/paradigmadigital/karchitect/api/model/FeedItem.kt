@@ -4,13 +4,16 @@ import org.simpleframework.xml.Element
 import org.simpleframework.xml.Root
 
 @Root(name = "item", strict = false)
-class FeedItem (
+class FeedItem(
         @field:Element(name = "pubDate")
-    var pubDate: String? = null,
+        var pubDate: String? = null,
+
         @field:Element(name = "title")
-    var title: String? = null,
+        var title: String? = null,
+
         @field:Element(name = "link")
-    var link: String? = null,
+        var link: String? = null,
+
         @field:Element(name = "description")
-    var description: String? = null
+        var description: String? = null
 )

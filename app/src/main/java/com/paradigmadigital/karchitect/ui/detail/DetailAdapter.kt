@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.paradigmadigital.karchitect.R
 import com.paradigmadigital.karchitect.domain.entities.Item
+import com.paradigmadigital.karchitect.platform.Callback
 import javax.inject.Inject
 
 class DetailAdapter
@@ -12,7 +13,7 @@ class DetailAdapter
 constructor() : RecyclerView.Adapter<DetailViewHolder>() {
 
     private var items: List<Item> = listOf()
-    private var clickListener: DetailClickListener? = null
+    private var clickListener: Callback<Int>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -20,23 +21,21 @@ constructor() : RecyclerView.Adapter<DetailViewHolder>() {
         return DetailViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: DetailViewHolder, position: Int) =
-            holder.bind(items[position], clickListener)
+    override fun onBindViewHolder(holder: DetailViewHolder, position: Int) = holder.bind(items[position], clickListener)
 
     override fun getItemCount() = items.size
 
     fun swap(items: List<Item>?) {
-        if (items != null) {
-            this.items = items
+        items?.let {
+            this.items = it
             notifyDataSetChanged()
         }
     }
 
-    fun setClickListener(clickListener: DetailClickListener) {
+    fun setClickListener(clickListener: Callback<Int>) {
         this.clickListener = clickListener
     }
 
-    fun getItemAtPosition(position: Int): Item {
-        return items[position]
-    }
+    fun getItemAtPosition(position: Int) = items[position]
 }
+

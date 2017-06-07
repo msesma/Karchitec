@@ -1,4 +1,4 @@
-package com.paradigmadigital.paraguas
+package com.paradigmadigital.karchitect
 
 import junit.framework.Assert.assertEquals
 import okhttp3.OkHttpClient
@@ -16,7 +16,7 @@ open class MockWebServerTestBase {
         private val FILE_ENCODING = "UTF-8"
     }
 
-    lateinit private var server: MockWebServer
+    private lateinit var server: MockWebServer
 
     protected val endpoint: String
         get() {

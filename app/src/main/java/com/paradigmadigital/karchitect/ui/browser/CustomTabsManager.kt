@@ -33,8 +33,8 @@ constructor(
 
     fun showContent(url: String) {
         val browser = customTabsHelper.getPackageNameToUse()
-        if (browser != null) {
-            openCustomTab(browser, url)
+        browser?.let {
+            openCustomTab(it, url)
             return
         }
         fallBackExternalBrowser(url)
@@ -61,9 +61,7 @@ constructor(
     }
 
     private fun unbindCustomTabsService() {
-        if (connection == null) {
-            return
-        }
+        if (connection == null) return
         activity.unbindService(connection)
     }
 

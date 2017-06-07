@@ -1,7 +1,5 @@
 package com.paradigmadigital.karchitect.ui.detail
 
-import android.content.Context
-import android.content.res.Resources
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
@@ -12,6 +10,7 @@ import butterknife.OnClick
 import com.paradigmadigital.karchitect.R
 import com.paradigmadigital.karchitect.domain.entities.Item
 import com.paradigmadigital.karchitect.domain.entities.Item.Companion.READ
+import com.paradigmadigital.karchitect.platform.Callback
 
 class DetailViewHolder(
         itemView: ViewGroup
@@ -22,21 +21,16 @@ class DetailViewHolder(
     @BindView(R.id.title)
     lateinit var title: TextView
 
-    lateinit private var item: Item
-    private var clickListener: DetailClickListener? = null
-
-    private val context: Context
-    private val resources: Resources
+    private lateinit var item: Item
+    private var clickListener: Callback<Int>? = null
 
     init {
         ButterKnife.bind(this, itemView)
-        resources = itemView.resources
-        context = itemView.context
     }
 
-    fun bind(item: Item, detailClickListener: DetailClickListener?) {
+    fun bind(item: Item, clickListener: Callback<Int>?) {
         this.item = item
-        this.clickListener = detailClickListener
+        this.clickListener = clickListener
         configureView()
     }
 
@@ -52,6 +46,7 @@ class DetailViewHolder(
 
     @OnClick(R.id.detail_row)
     internal fun onRowClick() {
-        clickListener?.onClick(adapterPosition)
+        clickListener?.invoke(adapterPosition)
     }
+
 }

@@ -28,12 +28,6 @@ constructor(
 
     private var delegate: DetailActivityUserInterface.Delegate? = null
 
-    private val clickListener = object : DetailClickListener {
-        override fun onClick(index: Int) {
-            delegate?.onClick(adapter.getItemAtPosition(index))
-        }
-    }
-
     fun bind(view: View) {
         ButterKnife.bind(this, view)
         initToolbar()
@@ -48,7 +42,7 @@ constructor(
     override fun initialize(delegate: DetailActivityUserInterface.Delegate, viewModel: DetailViewModel) {
         this.delegate = delegate
         list.adapter = adapter
-        adapter.setClickListener(clickListener)
+        adapter.setClickListener({ delegate.onClick(adapter.getItemAtPosition(it)) })
         viewModel.items?.observe(activity, Observer<List<Item>> { it -> adapter.swap(it) })
     }
 

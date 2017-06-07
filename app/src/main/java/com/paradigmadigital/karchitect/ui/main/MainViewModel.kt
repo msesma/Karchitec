@@ -4,9 +4,9 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
 import com.paradigmadigital.karchitect.domain.entities.ChannelUiModel
+import com.paradigmadigital.karchitect.platform.AndroidApplication
 import com.paradigmadigital.karchitect.repository.FeedRepository
 import com.paradigmadigital.karchitect.repository.NetworkError
-import com.paradigmadigital.karchitect.platform.AndroidApplication
 import javax.inject.Inject
 
 data class MainViewModel
@@ -23,5 +23,13 @@ constructor(
         (app as AndroidApplication).applicationComponent.inject(this)
         channels = repository.getChannels()
         errors = repository.getErrors()
+    }
+
+    fun refreshItems(){
+        repository.refreshItems()
+    }
+
+    fun addChannel(channelLink: String){
+        repository.addChannel(channelLink)
     }
 }

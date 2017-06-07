@@ -7,8 +7,7 @@ import javax.inject.Inject
 
 class DetailActivityPresenter
 @Inject constructor(
-        val browser: CustomTabsManager,
-        val repository: FeedRepository
+        val browser: CustomTabsManager
 ) {
 
     private var decorator: DetailActivityUserInterface? = null
@@ -17,7 +16,7 @@ class DetailActivityPresenter
     private val delegate = object : DetailActivityUserInterface.Delegate {
         override fun onClick(item: Item) {
             browser.showContent(item.link)
-            repository.markAsRead(item)
+            viewModel.markAsRead(item)
         }
     }
 

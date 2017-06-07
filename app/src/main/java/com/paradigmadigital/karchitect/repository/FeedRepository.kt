@@ -21,11 +21,11 @@ constructor(
         return channelsDao.getChannelList()
     }
 
-    fun addChannel(channelLink: String) = useCase.refreshItems(channelLink, { errorData.setNetworkError(it) })
+    fun getItems(channelLink: String) = itemsDao.getAll(channelLink)
 
-    fun getItems(channelLink: String): LiveData<List<Item>> {
-        return itemsDao.getAll(channelLink)
-    }
+    fun getErrors(): LiveData<NetworkError> = errorData
+
+    fun addChannel(channelLink: String) = useCase.refreshItems(channelLink, { errorData.setNetworkError(it) })
 
     fun refreshItems() {
         var links = channelsDao.getChannelsSync().map { channel -> channel.linkKey }
@@ -38,10 +38,6 @@ constructor(
     fun markAsRead(item: Item) {
         item.read = READ
         itemsDao.updateItem(item)
-    }
-
-    fun getErrors(): LiveData<NetworkError> {
-        return errorData
     }
 
     private fun addSampleChannels(): List<String> {

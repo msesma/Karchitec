@@ -28,7 +28,7 @@ constructor(
     fun addChannel(channelLink: String) = useCase.refreshItems(channelLink, { errorData.setNetworkError(it) })
 
     fun refreshItems() {
-        var links = channelsDao.getChannelsSync().map { channel -> channel.linkKey }
+        var links = channelsDao.getChannelsSync().map { (linkKey) -> linkKey }
         if (links.isNullOrEmpty()) links = addSampleChannels()
         for (link in links) {
             useCase.refreshItems(link, { errorData.setNetworkError(it) })
@@ -40,10 +40,7 @@ constructor(
         itemsDao.updateItem(item)
     }
 
-    private fun addSampleChannels(): List<String> {
-        val links = mutableListOf<String>()
-        links.add("http://www.paradigmadigital.com/feed/")
-        links.add("http://feed.androidauthority.com/")
-        return links
-    }
+    private fun addSampleChannels() = listOf(
+            "http://www.paradigmadigital.com/feed/",
+            "http://feed.androidauthority.com/")
 }

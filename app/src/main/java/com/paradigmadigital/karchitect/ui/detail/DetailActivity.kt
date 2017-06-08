@@ -28,6 +28,11 @@ class DetailActivity : BaseActivity() {
         presenter.initialize(decorator, viewModel)
     }
 
+    override fun onResume(){
+        super.onResume()
+        presenter.resume()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         presenter.dispose()

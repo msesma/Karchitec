@@ -52,6 +52,11 @@ constructor(
         }
     }
 
+    fun unbindCustomTabsService() {
+        if (connection == null) return
+        activity.unbindService(connection)
+    }
+
     private fun openCustomTab(browser: String, url: String) {
         connection = ServiceConnection(this)
         CustomTabsClient.bindCustomTabsService(activity, browser, connection)
@@ -60,10 +65,7 @@ constructor(
         customTabsIntent.launchUrl(activity, Uri.parse(url))
     }
 
-    private fun unbindCustomTabsService() {
-        if (connection == null) return
-        activity.unbindService(connection)
-    }
+
 
     private fun fallBackExternalBrowser(url: String) {
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))

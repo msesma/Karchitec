@@ -1,6 +1,5 @@
 package com.paradigmadigital.karchitect.ui.detail
 
-import com.paradigmadigital.karchitect.repository.FeedRepository
 import com.paradigmadigital.karchitect.domain.entities.Item
 import com.paradigmadigital.karchitect.ui.browser.CustomTabsManager
 import javax.inject.Inject
@@ -24,6 +23,10 @@ class DetailActivityPresenter
         this.decorator = decorator
         this.viewModel = viewModel
         this.decorator?.initialize(delegate, viewModel)
+    }
+
+    fun resume() {
+        browser.unbindCustomTabsService()
     }
 
     fun dispose() {

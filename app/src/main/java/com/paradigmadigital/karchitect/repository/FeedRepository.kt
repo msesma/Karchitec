@@ -42,7 +42,7 @@ constructor(
 
     private fun addSampleChannels(): List<String> {
         val links = mutableListOf<String>()
-        links.add("http://www.paradigmatecnologico.com/feed/")
+        links.add("http://www.paradigmadigital.com/feed/")
         links.add("http://feed.androidauthority.com/")
         return links
     }

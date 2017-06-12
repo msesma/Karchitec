@@ -11,7 +11,7 @@ Pet project for testing several technologies:
 - **Retrofit 2**
 - **Constraint layout**
 - **Chrome Custom Tabs**
-- **Estetho** for Okhttp and db debugging
+- **Stetho** for Okhttp and db debugging
 - **MockWebServer** based **Unit testing**
 - **Espresso** tests
  

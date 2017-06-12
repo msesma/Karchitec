@@ -22,7 +22,7 @@ constructor(
     }
 
     fun initialize(channelLink: String) {
-        items = repository.getItems(channelLink);
+        items = repository.getItems(channelLink)
     }
 
     fun markAsRead(item: Item) {

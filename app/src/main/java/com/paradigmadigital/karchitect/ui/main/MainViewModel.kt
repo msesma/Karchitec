@@ -25,11 +25,11 @@ constructor(
         errors = repository.getErrors()
     }
 
-    fun refreshItems(){
+    fun refreshItems() {
         repository.refreshItems()
     }
 
-    fun addChannel(channelLink: String){
+    fun addChannel(channelLink: String) {
         repository.addChannel(channelLink)
     }
 }

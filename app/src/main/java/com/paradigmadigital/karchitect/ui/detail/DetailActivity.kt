@@ -14,7 +14,7 @@ class DetailActivity : BaseActivity() {
     @javax.inject.Inject
     lateinit var presenter: DetailActivityPresenter
 
-    lateinit var viewModel: DetailViewModel;
+    lateinit var viewModel: DetailViewModel
 
     override fun onCreate(bundle: android.os.Bundle?) {
         super.onCreate(bundle)
@@ -28,7 +28,7 @@ class DetailActivity : BaseActivity() {
         presenter.initialize(decorator, viewModel)
     }
 
-    override fun onResume(){
+    override fun onResume() {
         super.onResume()
         presenter.resume()
     }

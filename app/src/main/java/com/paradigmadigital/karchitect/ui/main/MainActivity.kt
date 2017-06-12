@@ -10,7 +10,7 @@ class MainActivity : BaseActivity() {
     @javax.inject.Inject
     lateinit var presenter: MainActivityPresenter
 
-    lateinit var viewModel: MainViewModel;
+    lateinit var viewModel: MainViewModel
 
     override fun onCreate(bundle: android.os.Bundle?) {
         super.onCreate(bundle)

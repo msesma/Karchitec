@@ -14,6 +14,7 @@ Pet project for testing several technologies:
 - **Estetho** for Okhttp and db debugging
 - **MockWebServer** based **Unit testing**
 - **Espresso** tests
+- **Detekt** static code analysis
  
 Simple RSS reader for technology testing. It is mostly a pet project to test the architecture components in kotlin.
 

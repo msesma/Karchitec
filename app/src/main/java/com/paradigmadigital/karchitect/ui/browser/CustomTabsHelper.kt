@@ -7,7 +7,6 @@ import android.content.pm.PackageManager.MATCH_ALL
 import android.net.Uri
 import android.os.Build
 import android.text.TextUtils
-import android.util.Log
 import com.paradigmadigital.karchitect.platform.isNullOrEmpty
 import java.util.*
 import javax.inject.Inject
@@ -64,20 +63,17 @@ constructor(
     }
 
     private fun hasSpecializedHandlerIntents(context: Context, intent: Intent): Boolean {
-        try {
-            val pm = context.packageManager
-            val handlers = pm.queryIntentActivities(
-                    intent,
-                    PackageManager.GET_RESOLVED_FILTER)
-            if (handlers.isNullOrEmpty()) return false
-            for (resolveInfo in handlers) {
-                val filter = resolveInfo.filter ?: continue
-                if (filter.countDataAuthorities() == 0 || filter.countDataPaths() == 0) continue
-                if (resolveInfo.activityInfo == null) continue
-                return true
-            }
-        } catch (e: RuntimeException) {
-            Log.e(TAG, "Runtime exception while getting specialized handlers")
+        val pm = context.packageManager
+        val handlers = pm.queryIntentActivities(
+                intent,
+                PackageManager.GET_RESOLVED_FILTER)
+        if (handlers.isNullOrEmpty()) return false
+
+        for (resolveInfo in handlers) {
+            val filter = resolveInfo.filter ?: continue
+            if (filter.countDataAuthorities() == 0 || filter.countDataPaths() == 0) continue
+            if (resolveInfo.activityInfo == null) continue
+            return true
         }
 
         return false

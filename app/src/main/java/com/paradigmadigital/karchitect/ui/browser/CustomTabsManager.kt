@@ -26,7 +26,7 @@ constructor(
             val builder = CustomTabsIntent.Builder()
             builder.setToolbarColor(ContextCompat.getColor(activity, R.color.colorPrimary))
             builder.setShowTitle(true)
-            builder.setCloseButtonIcon(BitmapFactory.decodeResource(activity.getResources(), R.drawable.ic_arrow_back_white_24dp));
+            builder.setCloseButtonIcon(BitmapFactory.decodeResource(activity.resources, R.drawable.ic_arrow_back_white_24dp))
             builder.setExitAnimations(activity, android.R.anim.slide_in_left, android.R.anim.slide_out_right)
             return builder.build()
         }
@@ -40,9 +40,9 @@ constructor(
         fallBackExternalBrowser(url)
     }
 
-    override fun onServiceConnected(client: CustomTabsClient) {}
+    override fun onServiceConnected(client: CustomTabsClient) = Unit
 
-    override fun onServiceDisconnected() {}
+    override fun onServiceDisconnected() = Unit
 
     override fun onNavigationEvent(navigationEvent: Int, extras: Bundle?) {
         if (navigationEvent == CustomTabsCallback.NAVIGATION_ABORTED ||
@@ -64,8 +64,6 @@ constructor(
         customTabsIntent.intent.`package` = browser
         customTabsIntent.launchUrl(activity, Uri.parse(url))
     }
-
-
 
     private fun fallBackExternalBrowser(url: String) {
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))

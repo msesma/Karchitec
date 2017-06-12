@@ -3,7 +3,6 @@ package com.paradigmadigital.karchitect.repository
 import android.arch.lifecycle.LiveData
 import javax.inject.Inject
 
-
 class ErrorLiveData
 @Inject
 constructor(

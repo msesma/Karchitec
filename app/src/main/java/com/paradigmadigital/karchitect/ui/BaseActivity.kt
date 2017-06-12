@@ -12,7 +12,6 @@ import com.paradigmadigital.karchitect.injection.DaggerActivityComponent
 import com.paradigmadigital.karchitect.platform.ActivityModule
 import com.paradigmadigital.karchitect.platform.AndroidApplication
 
-
 open class BaseActivity : AppCompatActivity(), LifecycleRegistryOwner {
 
     private val lifecycleRegistry = LifecycleRegistry(this)

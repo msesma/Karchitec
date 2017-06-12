@@ -6,7 +6,6 @@ import com.paradigmadigital.karchitect.ui.BaseActivity
 import com.paradigmadigital.karchitect.ui.detail.DetailActivity
 import javax.inject.Inject
 
-
 class Navigator
 @Inject
 constructor(

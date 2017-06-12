@@ -76,7 +76,7 @@ constructor(
         stopRefresh()
         if (error == null) return
         when (error) {
-            SUCCESS -> {}
+            SUCCESS -> Unit
             DISCONNECTED -> showToast(R.string.net_error)
             BAD_URL -> showToast(R.string.url_error)
             NOT_A_FEED -> showToast(R.string.feed_error)

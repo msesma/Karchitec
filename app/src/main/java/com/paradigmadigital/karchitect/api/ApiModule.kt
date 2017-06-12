@@ -14,7 +14,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import java.io.File
 import java.util.concurrent.TimeUnit
 
-
 @Module
 class ApiModule() {
 
@@ -32,7 +31,6 @@ class ApiModule() {
                     .header("Cache-Control", cacheControl.toString())
                     .build()
         }
-
 
     @Provides
     fun provideLoggingInterceptor(): HttpLoggingInterceptor {

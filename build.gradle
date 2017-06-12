@@ -11,6 +11,17 @@ buildscript {
     }
 }
 
+plugins {
+    id "io.gitlab.arturbosch.detekt" version "1.0.0.M11"
+}
+
+detekt {
+    version = "1.0.0.M11"
+    config = "$input/detekt.yml"
+    input = "$input/app/src/main/java"
+    filters = ".*test.*,.*/resources/.*,.*/tmp/.*"
+}
+
 allprojects {
     repositories {
         maven { url 'https://jitpack.io' }

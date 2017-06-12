@@ -20,6 +20,8 @@ Simple RSS reader for technology testing. It is mostly a pet project to test the
 Instead using a fragment as View, here we use a decorator class in order to maintain the activities as clean as possible. There is also a presenter for removing the not Data related logic from the ViewModel.
 
 A time limited OkHttp caché acts as rate limiter avoiding network calls before 30 seconds after the last one. Some sites can overwrite this time.
+
+More information about the architecture implemented in [this post](https://medium.com/proandroiddev/android-architecture-components-network-awareness-using-livedata-1a8d3749734d).
 ## Error management and network status: 
 Instead creating an object that wraps network state and the actual data, here a second LiveData<NetworkError> is used. This LiveData is feeded by the repository with interpreted results of Network calls. This LiveData is also stored in the MainActivity ViewModel and the decorator subscribes to it as it does with the data one. this way, errors are also lifecycle aware.
 

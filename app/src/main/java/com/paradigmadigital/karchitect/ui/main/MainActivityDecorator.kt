@@ -46,7 +46,7 @@ constructor(
         ButterKnife.bind(this, view)
         initToolbar()
         list.layoutManager = layoutManager
-        list.itemAnimator = DefaultItemAnimator() as RecyclerView.ItemAnimator?
+        list.itemAnimator = DefaultItemAnimator()
         swipeRefresh.setOnRefreshListener({ delegate?.onRefresh() })
     }
 

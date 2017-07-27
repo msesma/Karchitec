@@ -21,7 +21,12 @@ open class BaseActivity : AppCompatActivity(), LifecycleRegistryOwner {
 
     lateinit var activityComponent: ActivityComponent
 
-    fun Activity.getRootView(): ViewGroup = (this.findViewById(android.R.id.content) as ViewGroup).getChildAt(0) as ViewGroup
+
+    fun Activity.getRootView(): ViewGroup {
+        val v: ViewGroup = window.decorView.findViewById(android.R.id.content)
+        return v.getChildAt(0) as ViewGroup
+    }
+
 
     override fun onCreate(bundle: Bundle?) {
         super.onCreate(bundle)
@@ -35,3 +40,4 @@ open class BaseActivity : AppCompatActivity(), LifecycleRegistryOwner {
         return lifecycleRegistry
     }
 }
+

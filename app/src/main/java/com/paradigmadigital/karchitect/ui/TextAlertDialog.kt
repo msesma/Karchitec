@@ -23,7 +23,7 @@ constructor(
         input.inputType = InputType.TYPE_TEXT_VARIATION_URI
         builder.setView(input)
 
-        builder.setPositiveButton(R.string.add) { dialog, _ -> callback(input.text.toString()) }
+        builder.setPositiveButton(R.string.add) { _ , _ -> callback(input.text.toString()) }
         builder.setNegativeButton(R.string.cancel) { dialog, _ -> dialog.cancel() }
 
         builder.create().show()

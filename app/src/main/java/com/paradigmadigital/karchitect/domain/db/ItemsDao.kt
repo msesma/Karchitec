@@ -19,6 +19,6 @@ abstract class ItemsDao {
     @Update
     abstract fun updateItem(item: Item)
 
-    @Query("SELECT * FROM items WHERE channelKey = :p0 ORDER BY pubDate DESC")
+    @Query("SELECT * FROM items WHERE channelKey = :channelKey ORDER BY pubDate DESC")
     abstract fun getAll(channelKey: String): LiveData<List<Item>>
 }
